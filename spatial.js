@@ -44,12 +44,14 @@ jQuery(function($) {
             // 境界は走査しない
             for (i = -1; i <= 1; i++) {
                 for (j = -1; j <= 1; j++) {
+                    if (isNotBoundary(k) === true) {
                     n = k + (i * 3 + j) * 4;
                     pixel.r = imageData.data[n];      // Red
                     pixel.g =  imageData.data[n + 1]; // Green
                     pixel.b =  imageData.data[n + 2]; // Blue
                     pixel.a = imageData.data[n + 3];  // Alpha
                     print(pixel, i, j);
+                    }
                 }
             }
         }
@@ -63,22 +65,24 @@ jQuery(function($) {
                 // 列
                 for (j = 0; j < imageData.width; j++) {
                     k  = (i * imageData.width + j) * 4;
-                    pixel.r = imageData.data[k];
+                    pixel.r = imageData.data[k];         // Red
                     pixel.g =  imageData.data[k + 1];    // Green
                     pixel.b =  imageData.data[k + 2];     // Blue
-                    if (isNotBoundary(k) === true) {
-                        spatial(k);
-                    }
+                    pixel.a = imageData.data[k + 3];      // Alpha
+                    spatial(k);
                 }
             }
         }
 
+        // 初期化
         function init(targetImageData) {
             imageData = targetImageData;
         }
+
         // 公開メソッド
         processing.scanPixel = scanPixel;
         processing.init = init;
+
     }());
 
     // 下記カラー情報配列を作成
