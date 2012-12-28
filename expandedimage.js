@@ -29,30 +29,27 @@ jQuery(function($) {
                     };
                 }
                 if (i === -1 && j === 0) {
-
                     return {
                         i: -i,
                         j: j
                     };
                 }
                 if (i === -1 && j === 1) {
-
                     return {
                         i: -i,
                         j: j
                     };
                 }
                 if (i === 0 && j === -1) {
-
                     return {
                         i: i,
                         j: -j
                     };
                 }
-                // 境界じゃない場合はそのまま返す
+                // 境界じゃないのでそのまま返す
                 return {
-                    i: 0,
-                    j: 0
+                    i: i,
+                    j: j
                 };
             }
             // 左下端
@@ -107,8 +104,8 @@ jQuery(function($) {
 
             // 境界ではないのでインデックス変わらない
             return {
-                i: 0,
-                j: 0
+                i: i,
+                j: j
             };
         }
 
