@@ -13,7 +13,7 @@ jQuery(function($) {
             console.log('Green : ' + pixel.g);
             console.log('Blue : ' + pixel.b);
             console.log('Alpha : ' + pixel.a);
-            console.log('---------------------------------');
+            console.log('------ ----- ----- ----- -----');
         }
 
         // 境界処理
@@ -38,19 +38,59 @@ jQuery(function($) {
             return true;
         }
 
+        // 境界処理
+        function boundary(i, j, k) {
+            var pixel = {};
+            var expandedValue;
+            // 左上端
+            if (i === -1 && j === -1) {
+                expandedValue = k + (-i * imageData.width - j) * 4;
+            } else if (i === -1 && j === 1) {
+                // 右上端
+                expandedValue = k + (-i * imageData.width - j) * 4;
+            } else if (i === 1 && j === -1) {
+                // 左下端
+                expandedValue = k + (-i * imageData.width - j) * 4;
+            } else if (i === 1 && j === 1) {
+                // 右下端
+                expandedValue = i + (-i * imageData.width - j) * 4;
+            } else if (j === -1) {
+                // 左端(左上端は除く)
+                expandedValue = k + (i * imageData.width - j) * 4;
+            } else if (j === 1) {
+                // 右端(右上端は除く)
+                expandedValue = k + (i * imageData.width - j) * 4;
+            } else if (i === -1) {
+                // 上端
+                expandedValue = k + (-i * imageData.width + j) * 4;
+            } else if (i === 1) {
+                // 下端
+                expandedValue = k + (-i * imageData.width + j) * 4;
+            }
+            pixel.r = imageData.data[expandedValue];
+            pixel.g = imageData.data[expandedValue + 1];
+            pixel.b = imageData.data[expandedValue + 2];
+            pixel.a = imageData.data[expandedValue + 3];
+            return pixel;
+
+        }
         // 空間フィルター(3x3)
         function spatial(k) {
             var i, j, n, pixel = {};
             // 境界は走査しない
             for (i = -1; i <= 1; i++) {
                 for (j = -1; j <= 1; j++) {
-                    if (isNotBoundary(k) === true) {
-                    n = k + (i * 3 + j) * 4;
-                    pixel.r = imageData.data[n];      // Red
-                    pixel.g =  imageData.data[n + 1]; // Green
-                    pixel.b =  imageData.data[n + 2]; // Blue
-                    pixel.a = imageData.data[n + 3];  // Alpha
-                    print(pixel, i, j);
+                    if (isNotBoundary(k)) {
+                        n = k + (i * 3 + j) * 4;
+                        pixel.r = imageData.data[n];      // Red
+                        pixel.g =  imageData.data[n + 1]; // Green
+                        pixel.b =  imageData.data[n + 2]; // Blue
+                        pixel.a = imageData.data[n + 3];  // Alpha
+//                        print(pixel, i, j);
+                    } else {
+                        // 境界処理
+                       pixel =  boundary(i, j, k);
+                        print(pixel, i, j, k);
                     }
                 }
             }
@@ -65,11 +105,11 @@ jQuery(function($) {
                 // 列
                 for (j = 0; j < imageData.width; j++) {
                     k  = (i * imageData.width + j) * 4;
-                    pixel.r = imageData.data[k];         // Red
+                    pixel.r = imageData.data[k];         // Alpha
                     pixel.g =  imageData.data[k + 1];    // Green
                     pixel.b =  imageData.data[k + 2];     // Blue
-                    pixel.a = imageData.data[k + 3];      // Alpha
-                    spatial(k);
+                    pixel.a =  imageData.data[k + 3];     // Blue
+                        spatial(k);
                 }
             }
         }
@@ -82,7 +122,6 @@ jQuery(function($) {
         // 公開メソッド
         processing.scanPixel = scanPixel;
         processing.init = init;
-
     }());
 
     // 下記カラー情報配列を作成
