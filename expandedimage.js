@@ -12,7 +12,7 @@ jQuery(function($) {
         /**
          * 境界処理
          *
-         * 左上端のみ実装
+         * 左上端, 左下端のみ境界処理実装
          */
         function expandedIndex(k, i, j) {
 
@@ -54,9 +54,40 @@ jQuery(function($) {
             }
             // 左下端
             if (k === (maxIndex - (imageData.width - 1) * 4)) {
+                if (i === -1 && j === -1) {
+                    return {
+                        i: -i,
+                        j: -j
+                    };
+                }
+                if (i === 0 && j === -1) {
+                    return {
+                        i: i,
+                        j: -j
+                    };
+                }
+                if (i === 1 && j === -1) {
+                    return {
+                        i: -i,
+                        j: -j
+                    };
+                }
+                if (i === 1 && j === 0) {
+                    return {
+                        i: -i,
+                        j: j
+                    };
+                }
+                if (i === 1 && j === -1) {
+                    return {
+                        i: -i,
+                        j: j
+                    };
+                }
+                // 境界じゃないのでそのまま返す
                 return {
-                    i: 0,
-                    j: 0
+                    i: i,
+                    j: j
                 };
             }
             // 右上端
