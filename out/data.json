@@ -1,0 +1,257 @@
+{
+    "project": {},
+    "files": {
+        "expandedimage.js": {
+            "name": "expandedimage.js",
+            "modules": {},
+            "classes": {
+                "bundary": 1,
+                "filter": 1,
+                "processing": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "bundary": {
+            "name": "bundary",
+            "shortname": "bundary",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "expandedimage.js",
+            "line": 3,
+            "description": "空間フィルタの境界処理を提供する"
+        },
+        "filter": {
+            "name": "filter",
+            "shortname": "filter",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "expandedimage.js",
+            "line": 247,
+            "description": "フィルター処理を提供する"
+        },
+        "processing": {
+            "name": "processing",
+            "shortname": "processing",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "expandedimage.js",
+            "line": 387,
+            "description": "画像処理を提供する"
+        }
+    },
+    "classitems": [
+        {
+            "file": "expandedimage.js",
+            "line": 13,
+            "description": "境界処理\n\n境界で近傍のピクセルがないときは対角のピクセルを処理する。そのためのカウンタを返す\n境界処理は左上端, 左下端, 右上端, 右下端, 左端、右端、上端、下端で処理を分ける。",
+            "itemtype": "method",
+            "name": "expandedIndex",
+            "params": [
+                {
+                    "name": "k",
+                    "description": "注目ピクセルのRGBAのRed値インデックス",
+                    "type": "Number"
+                },
+                {
+                    "name": "i",
+                    "description": "空間フィルタの行方向カウンタ",
+                    "type": "Number"
+                },
+                {
+                    "name": "j",
+                    "description": "空間フィルタの列方向カウンタ",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "bundary"
+        },
+        {
+            "file": "expandedimage.js",
+            "line": 272,
+            "description": "2値画像フィルター\n\n注目ピクセルの近傍を使わないフィルター。",
+            "itemtype": "method",
+            "name": "mono",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "k",
+                    "description": "注目ピクセルのRed値に対応するImageData.dataのインデックス<br>\n    green k + 1<br>\n    blue  k + 2<br>\n    alpha k + 3",
+                    "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": "",
+                    "type": "ImageObject"
+                }
+            ],
+            "return": {
+                "description": "rgbaの値を格納したオブジェクト",
+                "type": "Object"
+            },
+            "class": "filter"
+        },
+        {
+            "file": "expandedimage.js",
+            "line": 296,
+            "description": "グレースケール\n\n注目ピクセルの近傍を使わないフィルター。",
+            "itemtype": "method",
+            "name": "grayscale",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "k",
+                    "description": "注目ピクセルのRed値に対応するImageData.dataのインデックス<br>\n    green k + 1<br>\n    blue  k + 2<br>\n    alpha k + 3",
+                    "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": "",
+                    "type": "ImageData"
+                }
+            ],
+            "return": {
+                "description": "rgbaの値を格納したオブジェクト",
+                "type": "Object"
+            },
+            "class": "filter"
+        },
+        {
+            "file": "expandedimage.js",
+            "line": 318,
+            "description": "平滑化\n\n注目ピクセルの近傍(3x3)を使う空間フィルター。",
+            "itemtype": "method",
+            "name": "smooth",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "k",
+                    "description": "注目ピクセルのRed値に対応するImageData.dataのインデックス<br>\n    green k + 1<br>\n    blue k + 2<br>\n    alpha k + 3",
+                    "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": "",
+                    "type": "ImageObject"
+                }
+            ],
+            "return": {
+                "description": "rgbaの値を格納したオブジェクト",
+                "type": "Object"
+            },
+            "class": "filter"
+        },
+        {
+            "file": "expandedimage.js",
+            "line": 351,
+            "description": "フィルタ呼び出し処理",
+            "itemtype": "method",
+            "name": "process",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "フィルタ名",
+                    "type": "String"
+                },
+                {
+                    "name": "k",
+                    "description": "ImageData.dataの処理rgbaのred値に対応するインデックス<br>",
+                    "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": "",
+                    "type": "ImageData"
+                }
+            ],
+            "return": {
+                "description": "rgbaの値を格納したオブジェクト",
+                "type": "Object"
+            },
+            "class": "filter"
+        },
+        {
+            "file": "expandedimage.js",
+            "line": 372,
+            "description": "フィルタ処理",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "フィルターの種類(mono | grayscale | smooth)",
+                    "type": "String"
+                },
+                {
+                    "name": "k",
+                    "description": "ImageData.dataの処理rgbaのred値に対応するインデックス<br>",
+                    "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "rgbaの値を格納したオブジェクト",
+                "type": "Object"
+            },
+            "class": "filter"
+        },
+        {
+            "file": "expandedimage.js",
+            "line": 409,
+            "description": "フィルター処理結果のRGBAデータ配列を返すを返す",
+            "itemtype": "method",
+            "name": "run",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "フィルターの種類(mono | grayscale | smooth)",
+                    "type": "String"
+                }
+            ],
+            "class": "processing"
+        },
+        {
+            "file": "expandedimage.js",
+            "line": 433,
+            "description": "初期化\n\n処理対象のImageDataを設定する",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "targetImageData",
+                    "description": "",
+                    "type": "ImageData"
+                }
+            ],
+            "class": "processing"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "Missing item type\nフィルタ処理",
+            "line": " expandedimage.js:372"
+        }
+    ]
+}
