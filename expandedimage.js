@@ -16,9 +16,8 @@ jQuery(function($) {
          */
         function expandedIndex(k, i, j) {
 
-            var index = {};
             // imageData.dataの添え字の最大値
-            var maxIndex = imageData.width * imageData.height * 4 - 1;
+            var length = imageData.width * imageData.height * 4;
 
             // 左上端
             if (k === 0) {
@@ -46,6 +45,12 @@ jQuery(function($) {
                         j: -j
                     };
                 }
+                if (i === 1 && j === -1) {
+                    return {
+                        i: i,
+                        j: -j
+                    };
+                }
                 // 境界じゃないのでそのまま返す
                 return {
                     i: i,
@@ -53,10 +58,10 @@ jQuery(function($) {
                 };
             }
             // 左下端
-            if (k === (maxIndex - (imageData.width - 1) * 4)) {
+            if (k === (length - imageData.width * 4)) {
                 if (i === -1 && j === -1) {
                     return {
-                        i: -i,
+                        i: i,
                         j: -j
                     };
                 }
@@ -78,7 +83,7 @@ jQuery(function($) {
                         j: j
                     };
                 }
-                if (i === 1 && j === -1) {
+                if (i === 1 && j === 1) {
                     return {
                         i: -i,
                         j: j
@@ -92,44 +97,130 @@ jQuery(function($) {
             }
             // 右上端
             if (k === (imageData.width - 1) * 4) {
+                if (i === -1 && j === -1) {
+                    return {
+                        i: -i,
+                        j: j
+                    };
+                }
+                if (i === -1 && j === 0) {
+                    return {
+                        i: -i,
+                        j: j
+                    };
+                }
+                if (i === -1 && j === 1) {
+                    return {
+                        i: -i,
+                        j: -j
+                    };
+                }
+                if (i === 0 && j === 1) {
+                    return {
+                        i: i,
+                        j: -j
+                    };
+                }
+                if (i === 1 && j === 1) {
+                    return {
+                        i: i,
+                        j: -j
+                    };
+                }
                 return {
-                    i: 0,
-                    j: 0
+                    i: i,
+                    j: j
                 };
             }
             // 右下端
-            if (k === maxIndex) {
+            if (k === length - 4) {
+                if (i === -1 && j === 1) {
+
+                    return {
+                        i: i,
+                        j: -j
+                    };
+                }
+                if (i === 0 && j === 1) {
+                    return {
+                        i: i,
+                        j: -j
+                    };
+                }
+                if (i === 1 && j === -1) {
+                    return {
+                        i: -i,
+                        j: j
+                    };
+                }
+                if (i === 1 && j === 0) {
+                    return {
+                        i: -i,
+                        j: j
+                    };
+                }
+                if (i === 1 && j === 1) {
+                    return {
+                        i: -i,
+                        j: -j
+                    };
+                }
+                // 境界じゃないのでそのまま返す
                 return {
-                    i: 0,
-                    j: 0
+                    i: i,
+                    j: j
                 };
             }
             // 左端
             if (k % (imageData.width * 4) === 0) {
+                if (j === -1) {
+                    return {
+                        i: i,
+                        j: -j
+                    };
+                }
                 return {
-                    i: 0,
-                    j: 0
+                    i: i,
+                    j: j
                 };
             }
             // 右端
-            if (((maxIndex - k) % imageData.width * 4) === 0) {
+            if (((length -4)- k) % imageData.width * 4 === 0) {
+                if (j === 1) {
+                    return {
+                        i: i,
+                        j: -j
+                    };
+                }
                 return {
-                    i: 0,
-                    j: 0
+                    i: i,
+                    j: j
                 };
             }
             // 上端
             if (k < imageData.width * 4) {
+                if (i === -1) {
+                    return {
+                        i: -i,
+                        j: j
+                    };
+                }
                 return {
-                    i: 0,
-                    j: 0
+                    i: i,
+                    j: j
                 };
             }
             // 下端
-            if (k > maxIndex - imageData.width * 4) {
+            if (k > (length - 1) - imageData.width * 4) {
+                if (i === 1) {
+                    return {
+                        i: -i,
+                        j: j
+                    };
+                }
                 return {
-                    i: 0,
-                    j: 0
+                    i: i,
+                    j: j
                 };
             }
 
