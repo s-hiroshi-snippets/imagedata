@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>bundary</title>
+    <title>Handle</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -41,15 +41,27 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
-                <li><a href="..&#x2F;classes/bundary.html">bundary</a></li>
+                <li><a href="..&#x2F;classes/App.html">App</a></li>
             
-                <li><a href="..&#x2F;classes/filter.html">filter</a></li>
+                <li><a href="..&#x2F;classes/Boundary.html">Boundary</a></li>
             
-                <li><a href="..&#x2F;classes/processing.html">processing</a></li>
+                <li><a href="..&#x2F;classes/Filter.html">Filter</a></li>
+            
+                <li><a href="..&#x2F;classes/Handle.html">Handle</a></li>
+            
+                <li><a href="..&#x2F;classes/Processing.html">Processing</a></li>
             
             </ul>
 
             <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/filtering.html">filtering</a></li>
+            
+                <li><a href="..&#x2F;modules/filtering
+
+モジュールcallFilterはCanvasのフィルタ処理を提供する.html">filtering
+
+モジュールcallFilterはCanvasのフィルタ処理を提供する</a></li>
             
             </ul>
         </div>
@@ -86,7 +98,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>bundary Class</h1>
+                        <h1>Handle Class</h1>
 <div class="box meta">
     
 
@@ -94,10 +106,14 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;expandedimage.js.html#l3"><code>expandedimage.js:3</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;handle.js.html#l7"><code>handle.js:7</code></a>
         </div>
     
 
+    
+        
+            Module: <a href="../modules/filtering.html">filtering</a>
+        
     
 
     
@@ -106,7 +122,7 @@
 
 
 <div class="box intro">
-    <p>空間フィルタの境界処理を提供する</p>
+    <p>イベントハンドラ集</p>
 </div>
 
 
@@ -133,8 +149,15 @@
 
                     <ul class="index-list methods">
                         
-                            <li class="index-item method">
-                                <a href="#method_expandedIndex">expandedIndex</a>
+                            <li class="index-item method private">
+                                <a href="#method_#flltering.click">#flltering.click</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method private">
+                                <a href="#method_window.load">window.load</a>
 
                                 
                                 
@@ -156,43 +179,19 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_expandedIndex" class="method item">
-    <h3 class="name"><code>expandedIndex</code></h3>
+                    <div id="method_#flltering.click" class="method item private">
+    <h3 class="name"><code>#flltering.click</code></h3>
 
     
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>k</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>i</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>j</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Object</span>
-        </span>
+        <span class="paren">()</span>
     
 
     
 
+    
+
+    
+        <span class="flag private">private</span>
     
 
     
@@ -214,7 +213,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;expandedimage.js.html#l13"><code>expandedimage.js:13</code></a>
+        <a href="..&#x2F;files&#x2F;handle.js.html#l42"><code>handle.js:42</code></a>
         
         </p>
 
@@ -225,79 +224,68 @@
     </div>
 
     <div class="description">
-        <p>境界処理</p>
-
-<p>境界で近傍のピクセルがないときは対角のピクセルを処理する。そのためのカウンタを返す
-境界処理は左上端, 左下端, 右上端, 右下端, 左端、右端、上端、下端で処理を分ける。</p>
+        <p>フィルタハンドラ</p>
     </div>
 
     
-        <div class="params">
-            <h4>Parameters:</h4>
 
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">k</code>
-                        <span class="type">Number</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>注目ピクセルのRGBAのRed値インデックス</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">i</code>
-                        <span class="type">Number</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>空間フィルタの行方向カウンタ</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">j</code>
-                        <span class="type">Number</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>空間フィルタの列方向カウンタ</p>
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
     
 
     
-        <div class="returns">
-            <h4>Returns:</h4>
+</div>
 
-            <div class="returns-description">
                 
-                    
-                        <span class="type">Object</span>:
-                    
+                    <div id="method_window.load" class="method item private">
+    <h3 class="name"><code>window.load</code></h3>
+
+    
+        <span class="paren">()</span>
+    
+
+    
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
                 
-            </div>
-        </div>
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;handle.js.html#l20"><code>handle.js:20</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>画像読み込みハンドル
+images/sample.pngをCanvasへ描画(immediate execution)</p>
+    </div>
+
+    
+
     
 
     

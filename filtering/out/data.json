@@ -1,61 +1,188 @@
 {
     "project": {},
     "files": {
-        "expandedimage.js": {
-            "name": "expandedimage.js",
+        "app.js": {
+            "name": "app.js",
             "modules": {},
             "classes": {
-                "bundary": 1,
-                "filter": 1,
-                "processing": 1
+                "App": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "boundary.js": {
+            "name": "boundary.js",
+            "modules": {},
+            "classes": {
+                "Boundary": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "filter.js": {
+            "name": "filter.js",
+            "modules": {
+                "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する": 1
+            },
+            "classes": {
+                "Filter": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "handle.js": {
+            "name": "handle.js",
+            "modules": {
+                "filtering": 1
+            },
+            "classes": {
+                "Handle": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "processing.js": {
+            "name": "processing.js",
+            "modules": {},
+            "classes": {
+                "Processing": 1
             },
             "fors": {},
             "namespaces": {}
         }
     },
-    "modules": {},
-    "classes": {
-        "bundary": {
-            "name": "bundary",
-            "shortname": "bundary",
-            "classitems": [],
-            "plugins": [],
-            "extensions": [],
-            "plugin_for": [],
-            "extension_for": [],
-            "file": "expandedimage.js",
-            "line": 3,
-            "description": "空間フィルタの境界処理を提供する"
+    "modules": {
+        "filtering": {
+            "name": "filtering",
+            "submodules": {},
+            "classes": {
+                "App": 1,
+                "Boundary": 1,
+                "Handle": 1,
+                "Processing": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "processing.js",
+            "line": 8,
+            "description": "モジュールfilteringはCanvasのフィルタ処理を提供する"
         },
-        "filter": {
-            "name": "filter",
-            "shortname": "filter",
+        "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する": {
+            "name": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する",
+            "submodules": {},
+            "classes": {
+                "Filter": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "filter.js",
+            "line": 7
+        }
+    },
+    "classes": {
+        "App": {
+            "name": "App",
+            "shortname": "App",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "file": "expandedimage.js",
-            "line": 247,
+            "module": "filtering",
+            "namespace": "",
+            "file": "app.js",
+            "line": 7,
+            "description": "名前空間を設定・管理する。"
+        },
+        "Boundary": {
+            "name": "Boundary",
+            "shortname": "Boundary",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "filtering",
+            "namespace": "",
+            "file": "boundary.js",
+            "line": 7,
+            "description": "空間フィルターの境界処理を提供する"
+        },
+        "Filter": {
+            "name": "Filter",
+            "shortname": "Filter",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する",
+            "namespace": "",
+            "file": "filter.js",
+            "line": 7,
             "description": "フィルター処理を提供する"
         },
-        "processing": {
-            "name": "processing",
-            "shortname": "processing",
+        "Handle": {
+            "name": "Handle",
+            "shortname": "Handle",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "file": "expandedimage.js",
-            "line": 387,
+            "module": "filtering",
+            "namespace": "",
+            "file": "handle.js",
+            "line": 7,
+            "description": "イベントハンドラ集"
+        },
+        "Processing": {
+            "name": "Processing",
+            "shortname": "Processing",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "filtering",
+            "namespace": "",
+            "file": "processing.js",
+            "line": 8,
             "description": "画像処理を提供する"
         }
     },
     "classitems": [
         {
-            "file": "expandedimage.js",
-            "line": 13,
+            "file": "app.js",
+            "line": 14,
+            "description": "名前空間の管理\n\n<p>引数に対応する既存のオブジェクトが存在するときは\nそのオブジェクトを返す。存在しないときは空のオブジェクト作成・登録してして返す。</p>",
+            "itemtype": "method",
+            "name": "namespace",
+            "class": "App",
+            "module": "filtering"
+        },
+        {
+            "file": "app.js",
+            "line": 23,
+            "params": [
+                {
+                    "name": "name",
+                    "description": "オブジェクト名",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "引数にマップされたオブジェクト",
+                "type": "Object"
+            },
+            "class": "App",
+            "module": "filtering"
+        },
+        {
+            "file": "boundary.js",
+            "line": 19,
             "description": "境界処理\n\n境界で近傍のピクセルがないときは対角のピクセルを処理する。そのためのカウンタを返す\n境界処理は左上端, 左下端, 右上端, 右下端, 左端、右端、上端、下端で処理を分ける。",
             "itemtype": "method",
             "name": "expandedIndex",
@@ -74,17 +201,23 @@
                     "name": "j",
                     "description": "空間フィルタの列方向カウンタ",
                     "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": "処理対象のImageData",
+                    "type": "ImageData"
                 }
             ],
             "return": {
                 "description": "",
                 "type": "Object"
             },
-            "class": "bundary"
+            "class": "Boundary",
+            "module": "filtering"
         },
         {
-            "file": "expandedimage.js",
-            "line": 272,
+            "file": "filter.js",
+            "line": 38,
             "description": "2値画像フィルター\n\n注目ピクセルの近傍を使わないフィルター。",
             "itemtype": "method",
             "name": "mono",
@@ -106,11 +239,12 @@
                 "description": "rgbaの値を格納したオブジェクト",
                 "type": "Object"
             },
-            "class": "filter"
+            "class": "Filter",
+            "module": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する"
         },
         {
-            "file": "expandedimage.js",
-            "line": 296,
+            "file": "filter.js",
+            "line": 62,
             "description": "グレースケール\n\n注目ピクセルの近傍を使わないフィルター。",
             "itemtype": "method",
             "name": "grayscale",
@@ -132,11 +266,12 @@
                 "description": "rgbaの値を格納したオブジェクト",
                 "type": "Object"
             },
-            "class": "filter"
+            "class": "Filter",
+            "module": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する"
         },
         {
-            "file": "expandedimage.js",
-            "line": 318,
+            "file": "filter.js",
+            "line": 84,
             "description": "平滑化\n\n注目ピクセルの近傍(3x3)を使う空間フィルター。",
             "itemtype": "method",
             "name": "smooth",
@@ -158,11 +293,12 @@
                 "description": "rgbaの値を格納したオブジェクト",
                 "type": "Object"
             },
-            "class": "filter"
+            "class": "Filter",
+            "module": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する"
         },
         {
-            "file": "expandedimage.js",
-            "line": 351,
+            "file": "filter.js",
+            "line": 117,
             "description": "フィルタ呼び出し処理",
             "itemtype": "method",
             "name": "process",
@@ -189,12 +325,15 @@
                 "description": "rgbaの値を格納したオブジェクト",
                 "type": "Object"
             },
-            "class": "filter"
+            "class": "Filter",
+            "module": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する"
         },
         {
-            "file": "expandedimage.js",
-            "line": 372,
+            "file": "filter.js",
+            "line": 138,
             "description": "フィルタ処理",
+            "itemtype": "method",
+            "name": "run",
             "params": [
                 {
                     "name": "type",
@@ -215,11 +354,34 @@
                 "description": "rgbaの値を格納したオブジェクト",
                 "type": "Object"
             },
-            "class": "filter"
+            "class": "Filter",
+            "module": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する"
         },
         {
-            "file": "expandedimage.js",
-            "line": 409,
+            "file": "handle.js",
+            "line": 20,
+            "description": "画像読み込みハンドル\nimages/sample.pngをCanvasへ描画(immediate execution)",
+            "itemtype": "method",
+            "name": "window.load",
+            "access": "private",
+            "tagname": "",
+            "class": "Handle",
+            "module": "filtering"
+        },
+        {
+            "file": "handle.js",
+            "line": 42,
+            "description": "フィルタハンドラ",
+            "itemtype": "method",
+            "name": "#flltering.click",
+            "access": "private",
+            "tagname": "",
+            "class": "Handle",
+            "module": "filtering"
+        },
+        {
+            "file": "processing.js",
+            "line": 23,
             "description": "フィルター処理結果のRGBAデータ配列を返すを返す",
             "itemtype": "method",
             "name": "run",
@@ -230,11 +392,12 @@
                     "type": "String"
                 }
             ],
-            "class": "processing"
+            "class": "Processing",
+            "module": "filtering"
         },
         {
-            "file": "expandedimage.js",
-            "line": 433,
+            "file": "processing.js",
+            "line": 47,
             "description": "初期化\n\n処理対象のImageDataを設定する",
             "itemtype": "method",
             "name": "init",
@@ -245,13 +408,14 @@
                     "type": "ImageData"
                 }
             ],
-            "class": "processing"
+            "class": "Processing",
+            "module": "filtering"
         }
     ],
     "warnings": [
         {
-            "message": "Missing item type\nフィルタ処理",
-            "line": " expandedimage.js:372"
+            "message": "Missing item type",
+            "line": " app.js:23"
         }
     ]
 }

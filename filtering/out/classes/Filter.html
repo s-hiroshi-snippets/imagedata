@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>filter</title>
+    <title>Filter</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.7.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -41,15 +41,27 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
-                <li><a href="..&#x2F;classes/bundary.html">bundary</a></li>
+                <li><a href="..&#x2F;classes/App.html">App</a></li>
             
-                <li><a href="..&#x2F;classes/filter.html">filter</a></li>
+                <li><a href="..&#x2F;classes/Boundary.html">Boundary</a></li>
             
-                <li><a href="..&#x2F;classes/processing.html">processing</a></li>
+                <li><a href="..&#x2F;classes/Filter.html">Filter</a></li>
+            
+                <li><a href="..&#x2F;classes/Handle.html">Handle</a></li>
+            
+                <li><a href="..&#x2F;classes/Processing.html">Processing</a></li>
             
             </ul>
 
             <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/filtering.html">filtering</a></li>
+            
+                <li><a href="..&#x2F;modules/filtering
+
+モジュールcallFilterはCanvasのフィルタ処理を提供する.html">filtering
+
+モジュールcallFilterはCanvasのフィルタ処理を提供する</a></li>
             
             </ul>
         </div>
@@ -86,7 +98,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>filter Class</h1>
+                        <h1>Filter Class</h1>
 <div class="box meta">
     
 
@@ -94,10 +106,18 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;expandedimage.js.html#l247"><code>expandedimage.js:247</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;filter.js.html#l7"><code>filter.js:7</code></a>
         </div>
     
 
+    
+        
+            Module: <a href="../modules/filtering
+
+モジュールcallFilterはCanvasのフィルタ処理を提供する.html">filtering
+
+モジュールcallFilterはCanvasのフィルタ処理を提供する</a>
+        
     
 
     
@@ -149,6 +169,13 @@
                         
                             <li class="index-item method private">
                                 <a href="#method_process">process</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_run">run</a>
 
                                 
                                 
@@ -231,7 +258,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;expandedimage.js.html#l296"><code>expandedimage.js:296</code></a>
+        <a href="..&#x2F;files&#x2F;filter.js.html#l62"><code>filter.js:62</code></a>
         
         </p>
 
@@ -363,7 +390,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;expandedimage.js.html#l272"><code>expandedimage.js:272</code></a>
+        <a href="..&#x2F;files&#x2F;filter.js.html#l38"><code>filter.js:38</code></a>
         
         </p>
 
@@ -501,7 +528,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;expandedimage.js.html#l351"><code>expandedimage.js:351</code></a>
+        <a href="..&#x2F;files&#x2F;filter.js.html#l117"><code>filter.js:117</code></a>
         
         </p>
 
@@ -555,6 +582,152 @@
                     
                         <code class="param-name">imageData</code>
                         <span class="type">ImageData</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    rgbaの値を格納したオブジェクト
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_run" class="method item">
+    <h3 class="name"><code>run</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>type</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>k</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>imageData</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;filter.js.html#l138"><code>filter.js:138</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>フィルタ処理</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">type</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>フィルターの種類(mono | grayscale | smooth)</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">k</code>
+                        <span class="type">Number</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>ImageData.dataの処理rgbaのred値に対応するインデックス<br></p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">imageData</code>
+                        <span class="type">Object</span>
                     
 
                     
@@ -643,7 +816,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;expandedimage.js.html#l318"><code>expandedimage.js:318</code></a>
+        <a href="..&#x2F;files&#x2F;filter.js.html#l84"><code>filter.js:84</code></a>
         
         </p>
 
