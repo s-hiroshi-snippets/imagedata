@@ -20,10 +20,11 @@ jQuery(function($) {
          * @param {Number} k 注目ピクセルのRGBAのRed値インデックス
          * @param {Number} i 空間フィルタの行方向カウンタ
          * @param {Number} j 空間フィルタの列方向カウンタ
+         * @param {ImageData} imageData 処理対象ImageData
          * @return {Object}
          *
          */
-        function expandedIndex(k, i, j) {
+        function expandedIndex(k, i, j, imageData) {
 
             // imageData.data配列の長さ
             var length = imageData.width * imageData.height * 4;
@@ -252,23 +253,6 @@ jQuery(function($) {
 
     (function() {
 
-        // 空間フィルター(3x3)の基本例
-        function spatial(k) {
-            var i, j, n, index = {}, rgba = {};
-            // 境界は走査しない
-            for (i = -1; i <= 1; i++) {
-                for (j = -1; j <= 1; j++) {
-                    index = boundary.expandedIndex(k, i, j);
-                    n = k + (index.i * 3 + index.j) * 4;
-                    rgba.r = imageData.data[n];      // Red
-                    rgba.g =  imageData.data[n + 1]; // Green
-                    rgba.b =  imageData.data[n + 2]; // Blue
-                    rgba.a = imageData.data[n + 3];  // Alpha
-                }
-            }
-            return rgba;
-        }
-
         /**
          * 2値画像フィルター
          *
@@ -334,7 +318,7 @@ jQuery(function($) {
             sumRed = sumGreen = sumBlue = 0;
             for (i = -1; i <= 1; i++) {
                 for (j = -1; j <= 1; j++) {
-                    index = boundary.expandedIndex(k, i, j);
+                    index = boundary.expandedIndex(k, i, j, imageData);
                     n = k + (index.i * 3 + index.j) * 4;
                     sumRed += imageData.data[n];
                     sumGreen += imageData.data[n + 1];
@@ -395,16 +379,6 @@ jQuery(function($) {
     (function() {
 
         var imageData;
-
-        // 処理確認コンソール出力
-        function print(rgba, i, j) {
-            console.log(i + '行' + j + '列');
-            console.log('Red : ' + rgba.r);
-            console.log('Green : ' + rgba.g);
-            console.log('Blue : ' + rgba.b);
-            console.log('Alpha : ' + rgba.a);
-            console.log('-- -- -- -- --');
-        }
 
         /**
          * フィルター処理結果のRGBAデータ配列を返すを返す
@@ -507,6 +481,7 @@ jQuery(function($) {
     // ImageDataに初期ピクセル情報設定
     imageData.data.set(data);
     processing.init(imageData);
+    // コンソール確認用
     console.log(processing.run('smooth'));
     // フィルタ処理後のピクセル情報を設定
     imageData.data.set(processing.run('smooth'));
