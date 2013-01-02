@@ -122,9 +122,11 @@ jQuery(function($) {
 
         var boundary = App.namespace(&#x27;Boundary&#x27;);
         var operator = {
-           smooth: [1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9],
-           mean: [1&#x2F;16, 2&#x2F;16, 1&#x2F;16, 2&#x2F;16, 4&#x2F;16, 2&#x2F;16, 1&#x2F;16, 2&#x2F;16, 1&#x2F;16],
-           sharpen: [0, -1, 0, -1, 5, -1, 0, -1, 0]
+            smooth: [1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9],
+            mean: [1&#x2F;16, 2&#x2F;16, 1&#x2F;16, 2&#x2F;16, 4&#x2F;16, 2&#x2F;16, 1&#x2F;16, 2&#x2F;16, 1&#x2F;16],
+            sharpen: [0, -1, 0, -1, 5, -1, 0, -1, 0],
+            differentialH: [0, 0, 0, 0, -1, 1, 0, 0, 0], &#x2F;&#x2F; 横方向一次微分フィルタ
+            differentialV: [0, 1, 0, 0, -1, 0, 0, 0, 0] &#x2F;&#x2F; 横方向一次微分フィルタ
         };
 
         &#x2F;**
@@ -261,6 +263,12 @@ jQuery(function($) {
 
             }
             if (&#x27;sharpen&#x27; === name) {
+                return spatial(k, imageData, name);
+            }
+            if (&#x27;differentialH&#x27; === name) {
+                return spatial(k, imageData, name);
+            }
+            if (&#x27;differentialV&#x27; === name) {
                 return spatial(k, imageData, name);
             }
         }

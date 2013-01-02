@@ -217,7 +217,7 @@
         },
         {
             "file": "filter.js",
-            "line": 26,
+            "line": 28,
             "description": "2値画像フィルター\n\n注目ピクセルの近傍を使わないフィルター。",
             "itemtype": "method",
             "name": "mono",
@@ -244,7 +244,7 @@
         },
         {
             "file": "filter.js",
-            "line": 50,
+            "line": 52,
             "description": "グレースケール\n\n注目ピクセルの近傍を使わないフィルター。",
             "itemtype": "method",
             "name": "grayscale",
@@ -271,7 +271,7 @@
         },
         {
             "file": "filter.js",
-            "line": 72,
+            "line": 74,
             "description": "空間フィルター",
             "itemtype": "method",
             "name": "spatial",
@@ -299,7 +299,7 @@
         },
         {
             "file": "filter.js",
-            "line": 102,
+            "line": 104,
             "description": "平滑化\n\n注目ピクセルの近傍(3x3)を使う空間フィルター。",
             "itemtype": "method",
             "name": "smooth",
@@ -326,7 +326,7 @@
         },
         {
             "file": "filter.js",
-            "line": 135,
+            "line": 137,
             "description": "フィルタ呼び出し処理",
             "itemtype": "method",
             "name": "process",
@@ -358,7 +358,7 @@
         },
         {
             "file": "filter.js",
-            "line": 164,
+            "line": 172,
             "description": "フィルタ処理",
             "itemtype": "method",
             "name": "run",

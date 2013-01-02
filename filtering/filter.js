@@ -18,9 +18,11 @@ jQuery(function($) {
 
         var boundary = App.namespace('Boundary');
         var operator = {
-           smooth: [1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9],
-           mean: [1/16, 2/16, 1/16, 2/16, 4/16, 2/16, 1/16, 2/16, 1/16],
-           sharpen: [0, -1, 0, -1, 5, -1, 0, -1, 0]
+            smooth: [1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9],
+            mean: [1/16, 2/16, 1/16, 2/16, 4/16, 2/16, 1/16, 2/16, 1/16],
+            sharpen: [0, -1, 0, -1, 5, -1, 0, -1, 0],
+            differentialH: [0, 0, 0, 0, -1, 1, 0, 0, 0], // 横方向一次微分フィルタ
+            differentialV: [0, 1, 0, 0, -1, 0, 0, 0, 0] // 横方向一次微分フィルタ
         };
 
         /**
@@ -157,6 +159,12 @@ jQuery(function($) {
 
             }
             if ('sharpen' === name) {
+                return spatial(k, imageData, name);
+            }
+            if ('differentialH' === name) {
+                return spatial(k, imageData, name);
+            }
+            if ('differentialV' === name) {
                 return spatial(k, imageData, name);
             }
         }
