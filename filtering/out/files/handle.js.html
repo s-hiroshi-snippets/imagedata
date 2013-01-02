@@ -158,7 +158,7 @@ jQuery(function($) {
             &#x2F;*
              * フィルター処理の実行(現在はmono, grayscale, smoothがある。
              *&#x2F;
-            imageData.data.set(processing.run(&#x27;smooth&#x27;));
+            imageData.data.set(processing.run(&#x27;mean&#x27;));
             ctx.putImageData(imageData, 0, 0);
             return false;
         });

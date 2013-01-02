@@ -54,7 +54,7 @@ jQuery(function($) {
             /*
              * フィルター処理の実行(現在はmono, grayscale, smoothがある。
              */
-            imageData.data.set(processing.run('smooth'));
+            imageData.data.set(processing.run('mean'));
             ctx.putImageData(imageData, 0, 0);
             return false;
         });

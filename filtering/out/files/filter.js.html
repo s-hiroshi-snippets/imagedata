@@ -122,7 +122,8 @@ jQuery(function($) {
 
         var boundary = App.namespace(&#x27;Boundary&#x27;);
         var operator = {
-           smooth: [1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9]
+           smooth: [1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9],
+           mean: [1&#x2F;16, 2&#x2F;16, 1&#x2F;16, 2&#x2F;16, 4&#x2F;16, 2&#x2F;16, 1&#x2F;16, 2&#x2F;16, 1&#x2F;16]
         };
 
         &#x2F;**
@@ -172,8 +173,13 @@ jQuery(function($) {
         }
 
         &#x2F;**
+         * 空間フィルター
+         *
          * @method spatial
-         * @param k
+         * @param {Number} k 注目ピクセルのRed値に対応するImageData.dataのインデックス&lt;br&gt;
+         *     green k + 1&lt;br&gt;
+         *     blue  k + 2&lt;br&gt;
+         *     alpha k + 3
          * @param imageData
          * @param name filter name
          * @return {Object}
@@ -247,6 +253,11 @@ jQuery(function($) {
             }
             if (&#x27;smooth&#x27; === name) {
                 return spatial(k, imageData, name);
+            }
+            if (&#x27;mean&#x27; === name) {
+                &#x2F;&#x2F; 加重平均
+                return spatial(k, imageData, name);
+
             }
         }
 
