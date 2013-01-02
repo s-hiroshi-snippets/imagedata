@@ -123,7 +123,8 @@ jQuery(function($) {
         var boundary = App.namespace(&#x27;Boundary&#x27;);
         var operator = {
            smooth: [1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9],
-           mean: [1&#x2F;16, 2&#x2F;16, 1&#x2F;16, 2&#x2F;16, 4&#x2F;16, 2&#x2F;16, 1&#x2F;16, 2&#x2F;16, 1&#x2F;16]
+           mean: [1&#x2F;16, 2&#x2F;16, 1&#x2F;16, 2&#x2F;16, 4&#x2F;16, 2&#x2F;16, 1&#x2F;16, 2&#x2F;16, 1&#x2F;16],
+           sharpen: [0, -1, 0, -1, 5, -1, 0, -1, 0]
         };
 
         &#x2F;**
@@ -259,13 +260,16 @@ jQuery(function($) {
                 return spatial(k, imageData, name);
 
             }
+            if (&#x27;sharpen&#x27; === name) {
+                return spatial(k, imageData, name);
+            }
         }
 
         &#x2F;**
          * フィルタ処理
          *
          * @method run
-         * @param {String} name filter name (mono | grayscale | smooth)
+         * @param {String} name filter name (mono | grayscale | smooth | mean 加重平均 | sharpen)
          * @param {Number} k ImageData.dataの処理rgbaのred値に対応するインデックス&lt;br&gt;
          * @param imageData
          * @return {Object} rgbaの値を格納したオブジェクト

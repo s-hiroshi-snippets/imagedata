@@ -146,10 +146,11 @@ jQuery(function($) {
         &#x2F;**
          * フィルタハンドラ
          *
-         * @method #flltering.click
+         * @method button.click
          * @private
          *&#x2F;
-        $(&#x27;#filtering&#x27;).click(function() {
+        $(&#x27;button&#x27;).click(function() {
+            var name = $(this).attr(&#x27;id&#x27;);
             var canvas = $(&#x27;#canvas1&#x27;).get(0);
             var ctx = canvas.getContext(&#x27;2d&#x27;);
             var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -158,13 +159,15 @@ jQuery(function($) {
             &#x2F;*
              * フィルター処理の実行(現在はmono, grayscale, smoothがある。
              *&#x2F;
-            imageData.data.set(processing.run(&#x27;mean&#x27;));
+
+            imageData.data.set(processing.run(name));
             ctx.putImageData(imageData, 0, 0);
             return false;
         });
 
     }());
 });
+;
 
     </pre>
 </div>

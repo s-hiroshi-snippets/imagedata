@@ -42,10 +42,11 @@ jQuery(function($) {
         /**
          * フィルタハンドラ
          *
-         * @method #flltering.click
+         * @method button.click
          * @private
          */
-        $('#filtering').click(function() {
+        $('button').click(function() {
+            var name = $(this).attr('id');
             var canvas = $('#canvas1').get(0);
             var ctx = canvas.getContext('2d');
             var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -54,10 +55,12 @@ jQuery(function($) {
             /*
              * フィルター処理の実行(現在はmono, grayscale, smoothがある。
              */
-            imageData.data.set(processing.run('mean'));
+
+            imageData.data.set(processing.run(name));
             ctx.putImageData(imageData, 0, 0);
             return false;
         });
 
     }());
 });
+;
