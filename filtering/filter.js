@@ -17,23 +17,9 @@ jQuery(function($) {
     (function() {
 
         var boundary = App.namespace('Boundary');
-
-        // 空間フィルター(3x3)の基本例
-        function spatial(k, imageData) {
-            var i, j, n, index = {}, rgba = {};
-            // 境界は走査しない
-            for (i = -1; i <= 1; i++) {
-                for (j = -1; j <= 1; j++) {
-                    index = boundary.expandedIndex(k, i, j, imageData);
-                    n = k + (index.i * 3 + index.j) * 4;
-                    rgba.r = imageData.data[n];      // Red
-                    rgba.g =  imageData.data[n + 1]; // Green
-                    rgba.b =  imageData.data[n + 2]; // Blue
-                    rgba.a = imageData.data[n + 3];  // Alpha
-                }
-            }
-            return rgba;
-        }
+        var operator = {
+           smooth: [1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9]
+        };
 
         /**
          * 2値画像フィルター
@@ -82,6 +68,31 @@ jQuery(function($) {
         }
 
         /**
+         * @method spatial
+         * @param k
+         * @param imageData
+         * @param name filter name
+         * @return {Object}
+         */
+        function spatial(k, imageData, name) {
+            var rgba = {};
+            rgba.r = rgba.g = rgba.b = 0;
+            var i, j, n, count = 0, index = {};
+            for (i = -1; i <= 1; i++) {
+                for (j = -1; j <= 1; j++) {
+                    index = boundary.expandedIndex(k, i, j, imageData);
+                    n = k + (index.i * 3 + index.j) * 4;
+                    rgba.r += parseInt(operator[name][count] * imageData.data[n], 10);
+                    rgba.g += parseInt(operator[name][count] * imageData.data[n + 1], 10);
+                    rgba.b += parseInt(operator[name][count] * imageData.data[n + 2], 10);
+                    count++;
+                }
+            }
+            rgba.a = imageData.data[k + 3]; // alpha
+            return rgba;
+        }
+
+        /**
          * 平滑化
          *
          * 注目ピクセルの近傍(3x3)を使う空間フィルター。
@@ -118,20 +129,20 @@ jQuery(function($) {
          * フィルタ呼び出し処理
          * @method process
          * @private
-         * @param {String} type フィルタ名
+         * @param {String} name filter name
          * @param {Number} k ImageData.dataの処理rgbaのred値に対応するインデックス<br>
          * @param {ImageData} imageData
          * @return {Object} rgbaの値を格納したオブジェクト
          */
-        function callFilter(type, k, imageData) {
-            if ('mono' === type) {
+        function callFilter(k, imageData, name) {
+            if ('mono' === name) {
                 return mono(k, imageData);
             }
-            if ('grayscale' === type) {
+            if ('grayscale' === name) {
                 return grayscale(k, imageData);
             }
-            if ('smooth' === type) {
-                return smooth(k, imageData);
+            if ('smooth' === name) {
+                return spatial(k, imageData, name);
             }
         }
 
@@ -139,13 +150,13 @@ jQuery(function($) {
          * フィルタ処理
          *
          * @method run
-         * @param {String} type フィルターの種類(mono | grayscale | smooth)
+         * @param {String} name filter name (mono | grayscale | smooth)
          * @param {Number} k ImageData.dataの処理rgbaのred値に対応するインデックス<br>
          * @param imageData
          * @return {Object} rgbaの値を格納したオブジェクト
          */
-        function run(type, k, imageData) {
-            return callFilter(type, k , imageData);
+        function run(k, imageData, name) {
+            return callFilter(k , imageData, name);
         }
 
         filter.run = run;

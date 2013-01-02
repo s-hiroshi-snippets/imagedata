@@ -24,9 +24,9 @@ jQuery(function($) {
          * フィルター処理結果のRGBAデータ配列を返すを返す
          *
          * @method run
-         * @param {String} type フィルターの種類(mono | grayscale | smooth)
+         * @param {String} name filter name(mono | grayscale | smooth)
          */
-        function run(type) {
+        function run(name) {
             // 全てのピクセルを走査
             var i, j, k, rgba = {}, data = [];
             // 行
@@ -34,7 +34,7 @@ jQuery(function($) {
                 // 列
                 for (j = 0; j < imageData.width; j++) {
                     k  = (i * imageData.width + j) * 4;
-                    rgba = filter.run(type, k, imageData);
+                    rgba = filter.run(k, imageData, name);
                     data[k] = rgba.r;
                     data[k + 1] = rgba.g;
                     data[k + 2] = rgba.b;
