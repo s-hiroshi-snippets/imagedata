@@ -217,7 +217,7 @@
         },
         {
             "file": "filter.js",
-            "line": 38,
+            "line": 24,
             "description": "2値画像フィルター\n\n注目ピクセルの近傍を使わないフィルター。",
             "itemtype": "method",
             "name": "mono",
@@ -244,7 +244,7 @@
         },
         {
             "file": "filter.js",
-            "line": 62,
+            "line": 48,
             "description": "グレースケール\n\n注目ピクセルの近傍を使わないフィルター。",
             "itemtype": "method",
             "name": "grayscale",
@@ -271,7 +271,33 @@
         },
         {
             "file": "filter.js",
-            "line": 84,
+            "line": 70,
+            "itemtype": "method",
+            "name": "spatial",
+            "params": [
+                {
+                    "name": "k",
+                    "description": ""
+                },
+                {
+                    "name": "imageData",
+                    "description": ""
+                },
+                {
+                    "name": "name",
+                    "description": "filter name"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Filter",
+            "module": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する"
+        },
+        {
+            "file": "filter.js",
+            "line": 95,
             "description": "平滑化\n\n注目ピクセルの近傍(3x3)を使う空間フィルター。",
             "itemtype": "method",
             "name": "smooth",
@@ -298,7 +324,7 @@
         },
         {
             "file": "filter.js",
-            "line": 117,
+            "line": 128,
             "description": "フィルタ呼び出し処理",
             "itemtype": "method",
             "name": "process",
@@ -306,8 +332,8 @@
             "tagname": "",
             "params": [
                 {
-                    "name": "type",
-                    "description": "フィルタ名",
+                    "name": "name",
+                    "description": "filter name",
                     "type": "String"
                 },
                 {
@@ -330,14 +356,14 @@
         },
         {
             "file": "filter.js",
-            "line": 138,
+            "line": 149,
             "description": "フィルタ処理",
             "itemtype": "method",
             "name": "run",
             "params": [
                 {
-                    "name": "type",
-                    "description": "フィルターの種類(mono | grayscale | smooth)",
+                    "name": "name",
+                    "description": "filter name (mono | grayscale | smooth)",
                     "type": "String"
                 },
                 {
@@ -387,8 +413,8 @@
             "name": "run",
             "params": [
                 {
-                    "name": "type",
-                    "description": "フィルターの種類(mono | grayscale | smooth)",
+                    "name": "name",
+                    "description": "filter name(mono | grayscale | smooth)",
                     "type": "String"
                 }
             ],
