@@ -1,7 +1,7 @@
 /**
- * @module filtering
+ * モジュールfilteringはCanvasのフィルタ処理を提供する
  *
- * モジュールcallFilterはCanvasのフィルタ処理を提供する
+ * @module filtering
  */
 
 /**
@@ -17,12 +17,20 @@ jQuery(function($) {
     (function() {
 
         var boundary = App.namespace('Boundary');
+        /**
+         * 空間フィルターのオペレーター
+         *
+         * @property operator
+         * @private
+         * @type {Object}
+         */
         var operator = {
             smooth: [1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9],
             mean: [1/16, 2/16, 1/16, 2/16, 4/16, 2/16, 1/16, 2/16, 1/16],
             sharpen: [0, -1, 0, -1, 5, -1, 0, -1, 0],
-            differentialH: [0, 0, 0, 0, -1, 1, 0, 0, 0], // 横方向一次微分フィルタ
-            differentialV: [0, 1, 0, 0, -1, 0, 0, 0, 0] // 横方向一次微分フィルタ
+            differentialH: [0, 0, 0, 0, -1, 1, 0, 0, 0], // 横方向一次微分フィルター
+            differentialV: [0, 1, 0, 0, -1, 0, 0, 0, 0], // 横方向一次微分フィルター
+            prewitt: [-1, 0, 1, -1, 0, 1, -1, 0, 1]         // Prewittフィルター
         };
 
         /**
@@ -102,40 +110,7 @@ jQuery(function($) {
         }
 
         /**
-         * 平滑化
-         *
-         * 注目ピクセルの近傍(3x3)を使う空間フィルター。
-         * @method smooth
-         * @private
-         * @param {Number} k 注目ピクセルのRed値に対応するImageData.dataのインデックス<br>
-         *     green k + 1<br>
-         *     blue k + 2<br>
-         *     alpha k + 3
-         * @param {ImageObject} imageData
-         * @return {Object} rgbaの値を格納したオブジェクト
-         */
-        function smooth(k, imageData) {
-            var rgba = {};
-            var i, j, n, sumRed, sumGreen, sumBlue, index = {};
-            sumRed = sumGreen = sumBlue = 0;
-            for (i = -1; i <= 1; i++) {
-                for (j = -1; j <= 1; j++) {
-                    index = boundary.expandedIndex(k, i, j, imageData);
-                    n = k + (index.i * 3 + index.j) * 4;
-                    sumRed += imageData.data[n];
-                    sumGreen += imageData.data[n + 1];
-                    sumBlue += imageData.data[n + 2];
-                }
-            }
-            rgba.r = Math.floor(sumRed / 9);    // R
-            rgba.g = Math.floor(sumGreen / 9);  // G
-            rgba.b = Math.floor(sumBlue / 9);   // B
-            rgba.a = imageData.data[k + 3]; // alpha
-            return rgba;
-        }
-
-        /**
-         * フィルタ呼び出し処理
+         * フィルター呼び出し処理
          * @method process
          * @private
          * @param {String} name filter name
@@ -167,10 +142,13 @@ jQuery(function($) {
             if ('differentialV' === name) {
                 return spatial(k, imageData, name);
             }
+            if ('prewitt' === name) {
+                return spatial(k, imageData, name);
+            }
         }
 
         /**
-         * フィルタ処理
+         * フィルター処理
          *
          * @method run
          * @param {String} name filter name (mono | grayscale | smooth | mean 加重平均 | sharpen)

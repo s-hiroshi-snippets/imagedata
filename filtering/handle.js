@@ -1,5 +1,5 @@
 /**
- * モジュールfilteringはCanvasのフィルタ処理を提供する
+ * モジュールfilteringはCanvasのフィルター処理を提供する
  *
  * @module filtering
  */
@@ -40,7 +40,7 @@ jQuery(function($) {
         });
 
         /**
-         * フィルタハンドラ
+         * フィルターハンドラ
          *
          * @method button.click
          * @private
@@ -50,17 +50,12 @@ jQuery(function($) {
             var canvas = $('#canvas1').get(0);
             var ctx = canvas.getContext('2d');
             var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-
             processing.init(imageData);
-            /*
-             * フィルター処理の実行(現在はmono, grayscale, smoothがある。
-             */
-
             imageData.data.set(processing.run(name));
             ctx.putImageData(imageData, 0, 0);
             return false;
         });
 
     }());
+
 });
-;

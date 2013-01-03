@@ -57,12 +57,6 @@
             
                 <li><a href="..&#x2F;modules/filtering.html">filtering</a></li>
             
-                <li><a href="..&#x2F;modules/filtering
-
-モジュールcallFilterはCanvasのフィルタ処理を提供する.html">filtering
-
-モジュールcallFilterはCanvasのフィルタ処理を提供する</a></li>
-            
             </ul>
         </div>
     </div>
@@ -103,7 +97,7 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
- * モジュールfilteringはCanvasのフィルタ処理を提供する
+ * モジュールfilteringはCanvasのフィルター処理を提供する
  *
  * @module filtering
  *&#x2F;
@@ -144,7 +138,7 @@ jQuery(function($) {
         });
 
         &#x2F;**
-         * フィルタハンドラ
+         * フィルターハンドラ
          *
          * @method button.click
          * @private
@@ -154,20 +148,15 @@ jQuery(function($) {
             var canvas = $(&#x27;#canvas1&#x27;).get(0);
             var ctx = canvas.getContext(&#x27;2d&#x27;);
             var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-
             processing.init(imageData);
-            &#x2F;*
-             * フィルター処理の実行(現在はmono, grayscale, smoothがある。
-             *&#x2F;
-
             imageData.data.set(processing.run(name));
             ctx.putImageData(imageData, 0, 0);
             return false;
         });
 
     }());
+
 });
-;
 
     </pre>
 </div>

@@ -8,18 +8,13 @@ YUI.add("yuidoc-meta", function(Y) {
         "Processing"
     ],
     "modules": [
-        "filtering",
-        "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する"
+        "filtering"
     ],
     "allModules": [
         {
             "displayName": "filtering",
             "name": "filtering",
-            "description": "モジュールfilteringはCanvasのフィルタ処理を提供する"
-        },
-        {
-            "displayName": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する",
-            "name": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する"
+            "description": "モジュールfilteringはCanvasのフィルター処理を提供する"
         }
     ]
 } };

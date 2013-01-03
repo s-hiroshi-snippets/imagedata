@@ -1,5 +1,5 @@
 /**
- * モジュールfilteringはCanvasのフィルタ処理を提供する
+ * モジュールfilteringはCanvasのフィルター処理を提供する
  *
  * @module filtering
  */

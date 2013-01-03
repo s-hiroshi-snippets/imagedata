@@ -1,12 +1,12 @@
 /**
- * モジュールcallFilterはCanvasのフィルタ処理を提供する
+ * モジュールfilteringはCanvasのフィルター処理を提供する
  *
  * @module filtering
  */
 
 
 /**
- * 画像処理を提供する
+ * 各ピクセルごとにフィルター処理を呼び出す
  *
  * @class Processing
  */

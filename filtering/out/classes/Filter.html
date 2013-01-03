@@ -57,12 +57,6 @@
             
                 <li><a href="..&#x2F;modules/filtering.html">filtering</a></li>
             
-                <li><a href="..&#x2F;modules/filtering
-
-モジュールcallFilterはCanvasのフィルタ処理を提供する.html">filtering
-
-モジュールcallFilterはCanvasのフィルタ処理を提供する</a></li>
-            
             </ul>
         </div>
     </div>
@@ -112,11 +106,7 @@
 
     
         
-            Module: <a href="../modules/filtering
-
-モジュールcallFilterはCanvasのフィルタ処理を提供する.html">filtering
-
-モジュールcallFilterはCanvasのフィルタ処理を提供する</a>
+            Module: <a href="../modules/filtering.html">filtering</a>
         
     
 
@@ -138,6 +128,8 @@
         
             <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
         
+        
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
         
         
         
@@ -181,13 +173,6 @@
                                 
                             </li>
                         
-                            <li class="index-item method private">
-                                <a href="#method_smooth">smooth</a>
-
-                                
-                                
-                            </li>
-                        
                             <li class="index-item method">
                                 <a href="#method_spatial">spatial</a>
 
@@ -199,6 +184,21 @@
                 </div>
             
 
+            
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                        
+                            <li class="index-item property private">
+                                <a href="#property_operator">operator</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
             
 
             
@@ -265,7 +265,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;filter.js.html#l52"><code>filter.js:52</code></a>
+        <a href="..&#x2F;files&#x2F;filter.js.html#l60"><code>filter.js:60</code></a>
         
         </p>
 
@@ -397,7 +397,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;filter.js.html#l28"><code>filter.js:28</code></a>
+        <a href="..&#x2F;files&#x2F;filter.js.html#l36"><code>filter.js:36</code></a>
         
         </p>
 
@@ -535,7 +535,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;filter.js.html#l137"><code>filter.js:137</code></a>
+        <a href="..&#x2F;files&#x2F;filter.js.html#l112"><code>filter.js:112</code></a>
         
         </p>
 
@@ -546,7 +546,7 @@
     </div>
 
     <div class="description">
-        <p>フィルタ呼び出し処理</p>
+        <p>フィルター呼び出し処理</p>
     </div>
 
     
@@ -681,7 +681,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;filter.js.html#l172"><code>filter.js:172</code></a>
+        <a href="..&#x2F;files&#x2F;filter.js.html#l150"><code>filter.js:150</code></a>
         
         </p>
 
@@ -692,7 +692,7 @@
     </div>
 
     <div class="description">
-        <p>フィルタ処理</p>
+        <p>フィルター処理</p>
     </div>
 
     
@@ -735,138 +735,6 @@
                     
                         <code class="param-name">imageData</code>
                         <span class="type">Object</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-            </ul>
-        </div>
-    
-
-    
-        <div class="returns">
-            <h4>Returns:</h4>
-
-            <div class="returns-description">
-                
-                    
-                        <span class="type">Object</span>:
-                    
-                    rgbaの値を格納したオブジェクト
-                
-            </div>
-        </div>
-    
-
-    
-</div>
-
-                
-                    <div id="method_smooth" class="method item private">
-    <h3 class="name"><code>smooth</code></h3>
-
-    
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-            
-                <li class="arg">
-                    
-                        <code>k</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>imageData</code>
-                    
-                </li>
-            
-            </ul><span class="paren">)</span>
-        </div>
-    
-
-    
-        <span class="returns-inline">
-            <span class="type">Object</span>
-        </span>
-    
-
-    
-
-    
-        <span class="flag private">private</span>
-    
-
-    
-
-    
-
-    
-
-    
-
-    <div class="meta">
-        
-            
-                
-                <p>
-                
-                Defined in
-                
-            
-        
-        
-        <a href="..&#x2F;files&#x2F;filter.js.html#l104"><code>filter.js:104</code></a>
-        
-        </p>
-
-
-        
-
-        
-    </div>
-
-    <div class="description">
-        <p>平滑化</p>
-
-<p>注目ピクセルの近傍(3x3)を使う空間フィルター。</p>
-    </div>
-
-    
-        <div class="params">
-            <h4>Parameters:</h4>
-
-            <ul class="params-list">
-            
-                <li class="param">
-                    
-                        <code class="param-name">k</code>
-                        <span class="type">Number</span>
-                    
-
-                    
-
-                    <div class="param-description">
-                        <p>注目ピクセルのRed値に対応するImageData.dataのインデックス<br>
-    green k + 1<br>
-    blue k + 2<br>
-    alpha k + 3</p>
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">imageData</code>
-                        <span class="type">ImageObject</span>
                     
 
                     
@@ -959,7 +827,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;filter.js.html#l74"><code>filter.js:74</code></a>
+        <a href="..&#x2F;files&#x2F;filter.js.html#l82"><code>filter.js:82</code></a>
         
         </p>
 
@@ -1052,6 +920,58 @@
             </div>
         
 
+        
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+                
+                    <div id="property_operator" class="property item private">
+    <h3 class="name"><code>operator</code></h3>
+    <span class="type">Object</span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;filter.js.html#l20"><code>filter.js:20</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>空間フィルターのオペレーター</p>
+    </div>
+
+    
+
+    
+
+    
+</div>
+
+                
+            </div>
         
 
         

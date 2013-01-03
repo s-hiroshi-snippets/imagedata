@@ -3,7 +3,9 @@
     "files": {
         "app.js": {
             "name": "app.js",
-            "modules": {},
+            "modules": {
+                "filtering": 1
+            },
             "classes": {
                 "App": 1
             },
@@ -21,9 +23,7 @@
         },
         "filter.js": {
             "name": "filter.js",
-            "modules": {
-                "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する": 1
-            },
+            "modules": {},
             "classes": {
                 "Filter": 1
             },
@@ -32,9 +32,7 @@
         },
         "handle.js": {
             "name": "handle.js",
-            "modules": {
-                "filtering": 1
-            },
+            "modules": {},
             "classes": {
                 "Handle": 1
             },
@@ -58,6 +56,7 @@
             "classes": {
                 "App": 1,
                 "Boundary": 1,
+                "Filter": 1,
                 "Handle": 1,
                 "Processing": 1
             },
@@ -66,19 +65,7 @@
             "tag": "module",
             "file": "processing.js",
             "line": 8,
-            "description": "モジュールfilteringはCanvasのフィルタ処理を提供する"
-        },
-        "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する": {
-            "name": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する",
-            "submodules": {},
-            "classes": {
-                "Filter": 1
-            },
-            "fors": {},
-            "namespaces": {},
-            "tag": "module",
-            "file": "filter.js",
-            "line": 7
+            "description": "モジュールfilteringはCanvasのフィルター処理を提供する"
         }
     },
     "classes": {
@@ -118,7 +105,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する",
+            "module": "filtering",
             "namespace": "",
             "file": "filter.js",
             "line": 7,
@@ -150,7 +137,7 @@
             "namespace": "",
             "file": "processing.js",
             "line": 8,
-            "description": "画像処理を提供する"
+            "description": "各ピクセルごとにフィルター処理を呼び出す"
         }
     },
     "classitems": [
@@ -194,12 +181,12 @@
                 },
                 {
                     "name": "i",
-                    "description": "空間フィルタの行方向カウンタ",
+                    "description": "空間フィルターの行方向カウンタ",
                     "type": "Number"
                 },
                 {
                     "name": "j",
-                    "description": "空間フィルタの列方向カウンタ",
+                    "description": "空間フィルターの列方向カウンタ",
                     "type": "Number"
                 },
                 {
@@ -217,7 +204,19 @@
         },
         {
             "file": "filter.js",
-            "line": 28,
+            "line": 20,
+            "description": "空間フィルターのオペレーター",
+            "itemtype": "property",
+            "name": "operator",
+            "access": "private",
+            "tagname": "",
+            "type": "{Object}",
+            "class": "Filter",
+            "module": "filtering"
+        },
+        {
+            "file": "filter.js",
+            "line": 36,
             "description": "2値画像フィルター\n\n注目ピクセルの近傍を使わないフィルター。",
             "itemtype": "method",
             "name": "mono",
@@ -240,11 +239,11 @@
                 "type": "Object"
             },
             "class": "Filter",
-            "module": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する"
+            "module": "filtering"
         },
         {
             "file": "filter.js",
-            "line": 52,
+            "line": 60,
             "description": "グレースケール\n\n注目ピクセルの近傍を使わないフィルター。",
             "itemtype": "method",
             "name": "grayscale",
@@ -267,11 +266,11 @@
                 "type": "Object"
             },
             "class": "Filter",
-            "module": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する"
+            "module": "filtering"
         },
         {
             "file": "filter.js",
-            "line": 74,
+            "line": 82,
             "description": "空間フィルター",
             "itemtype": "method",
             "name": "spatial",
@@ -295,39 +294,12 @@
                 "type": "Object"
             },
             "class": "Filter",
-            "module": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する"
+            "module": "filtering"
         },
         {
             "file": "filter.js",
-            "line": 104,
-            "description": "平滑化\n\n注目ピクセルの近傍(3x3)を使う空間フィルター。",
-            "itemtype": "method",
-            "name": "smooth",
-            "access": "private",
-            "tagname": "",
-            "params": [
-                {
-                    "name": "k",
-                    "description": "注目ピクセルのRed値に対応するImageData.dataのインデックス<br>\n    green k + 1<br>\n    blue k + 2<br>\n    alpha k + 3",
-                    "type": "Number"
-                },
-                {
-                    "name": "imageData",
-                    "description": "",
-                    "type": "ImageObject"
-                }
-            ],
-            "return": {
-                "description": "rgbaの値を格納したオブジェクト",
-                "type": "Object"
-            },
-            "class": "Filter",
-            "module": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する"
-        },
-        {
-            "file": "filter.js",
-            "line": 137,
-            "description": "フィルタ呼び出し処理",
+            "line": 112,
+            "description": "フィルター呼び出し処理",
             "itemtype": "method",
             "name": "process",
             "access": "private",
@@ -354,12 +326,12 @@
                 "type": "Object"
             },
             "class": "Filter",
-            "module": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する"
+            "module": "filtering"
         },
         {
             "file": "filter.js",
-            "line": 172,
-            "description": "フィルタ処理",
+            "line": 150,
+            "description": "フィルター処理",
             "itemtype": "method",
             "name": "run",
             "params": [
@@ -383,7 +355,7 @@
                 "type": "Object"
             },
             "class": "Filter",
-            "module": "filtering\n\nモジュールcallFilterはCanvasのフィルタ処理を提供する"
+            "module": "filtering"
         },
         {
             "file": "handle.js",
@@ -399,7 +371,7 @@
         {
             "file": "handle.js",
             "line": 42,
-            "description": "フィルタハンドラ",
+            "description": "フィルターハンドラ",
             "itemtype": "method",
             "name": "button.click",
             "access": "private",
