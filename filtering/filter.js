@@ -25,13 +25,36 @@ jQuery(function($) {
          * @type {Object}
          */
         var operator = {
-            smooth: [1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9],
-            mean: [1/16, 2/16, 1/16, 2/16, 4/16, 2/16, 1/16, 2/16, 1/16],
-            sharpen: [0, -1, 0, -1, 5, -1, 0, -1, 0],
-            differentialH: [0, 0, 0, 0, -1, 1, 0, 0, 0], // 横方向一次微分フィルター
-            differentialV: [0, 1, 0, 0, -1, 0, 0, 0, 0], // 横方向一次微分フィルター
-            prewitt: [-1, 0, 1, -1, 0, 1, -1, 0, 1]         // Prewittフィルター
+            smooth: [1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9, 1/9],           // 平滑化
+            mean: [1/16, 2/16, 1/16, 2/16, 4/16, 2/16, 1/16, 2/16, 1/16],    // 平滑化(加重平均)
+            sharpen: [0, -1, 0, -1, 5, -1, 0, -1, 0],                        // 先鋭化
+            sharpen2: [-1, -1, -1, -1, 9, -1, -1, -1, -1],                   // 先鋭化2
+            differentialH: [0, 0, 0, 0, -1, 1, 0, 0, 0],                     // 横方向一次微分フィルター
+            differentialV: [0, 1, 0, 0, -1, 0, 0, 0, 0],                     // 横方向一次微分フィルター
+            prewitt: [-1, 0, 1, -1, 0, 1, -1, 0, 1],                         // Prewittフィルター
+            sobel: [-1, 0, 1, -2, 0, 2, -1, 0, 1],                            // Sobelフィルター
+            emboss: [1, 0, 0, 0, -1, 0, 0, 0, 0]                             // Embossフィルター
         };
+
+        /**
+         * 反転
+         * @method @reverse
+         * @private
+         * @param {Number} k 注目ピクセルのRed値に対応するImageData.dataのインデックス<br>
+         *     green k + 1<br>
+         *     blue  k + 2<br>
+         *     alpha k + 3
+         * @param {ImageObject} imageData
+         * @return {Object} rgbaの値を格納したオブジェクト
+         */
+        function reverse(k, imageData) {
+            var rgba = {};
+            rgba.r = 255 - imageData.data[k];
+            rgba.g = 255 - imageData.data[k + 1];
+            rgba.b = 255 - imageData.data[k + 2];
+            rgba.a = imageData.data[k + 3];
+            return rgba;
+        }
 
         /**
          * 2値画像フィルター
@@ -92,6 +115,9 @@ jQuery(function($) {
          * @return {Object}
          */
         function spatial(k, imageData, name) {
+            if (operator[name] instanceof Array === false) {
+                throw new Exception('フィルターがありません。');
+            }
             var rgba = {};
             rgba.r = rgba.g = rgba.b = 0;
             var i, j, n, count = 0, index = {};
@@ -125,25 +151,14 @@ jQuery(function($) {
             if ('grayscale' === name) {
                 return grayscale(k, imageData);
             }
-            if ('smooth' === name) {
-                return spatial(k, imageData, name);
+            if ('reverse' === name) {
+                return reverse(k, imageData);
             }
-            if ('mean' === name) {
-                // 加重平均
-                return spatial(k, imageData, name);
-
-            }
-            if ('sharpen' === name) {
-                return spatial(k, imageData, name);
-            }
-            if ('differentialH' === name) {
-                return spatial(k, imageData, name);
-            }
-            if ('differentialV' === name) {
-                return spatial(k, imageData, name);
-            }
-            if ('prewitt' === name) {
-                return spatial(k, imageData, name);
+            // 空間フィルター
+            try {
+            return spatial(k, imageData, name);
+            } catch (e) {
+                alert('フィルターがありません。')
             }
         }
 
