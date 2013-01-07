@@ -13,19 +13,29 @@
 </head>
 <body style="background: #005588">
 <canvas id="canvas1"></canvas>
-<div>
-    <button id="mono">2値 mono</button>
-    <button id="grayscale">グレースケール grayscale</button>
+<h4>エフェクト</h4>
+<div class="tuple">
+    <button id="reverse" class="filtering btn btn-large">reverse</button>
+    <button id="mono" class="filtering btn btn-large">monochrome</button>
+    <button id="grayscale" class="filtering btn btn-large">grayscale</button>
 </div>
-<div>
-    <button id="smooth">平滑化(単純平均) smooth</button>
-    <button id="mean">平滑化(加重平均) mean</button>
-    <button id="sharpen">先鋭化 sharpen</button>
+<div class="tuple">
+    <button id="red" class="filtering btn btn-large">赤色を濃く</button>
+    <button id="green" class="filtering btn btn-large">緑色を濃く</button>
+    <button id="blue" class="filtering btn btn-large">青色を濃く</button>
 </div>
-<div>
-    <button id="differentialH">横方向一次微分 differential horizontal</button>
-    <button id="differentialV">縦方向一次微分 differential vertical</button>
-    <button id="prewitt">prewitt</button>
+<div class="tuple">
+    <button id="smooth" class="filtering btn btn-large">smooth(単純平均)</button>
+    <button id="sharpen" class="filtering btn btn-large">sharpen(先鋭化)</button>
+    <button id="sharpen2" class="filtering btn btn-large">sharpen 2(先鋭化2)</button>
+</div>
+<div class="tuple">
+    <button id="differentialH" class="filtering btn btn-large">edge detection(横方向エッジ検出)</button>
+    <button id="differentialV" class="filtering btn btn-large">edge detection vertical(縦方向エッジ検出)</button>
+</div>
+<div class="tuple">
+    <button id="prewitt" class="filtering btn btn-large">Prewitt</button>
+    <button id="sobel" class="filtering btn btn-large">Sobel</button>
 </div>
 </body>
 </html>
