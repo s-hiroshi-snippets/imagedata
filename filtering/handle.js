@@ -15,7 +15,7 @@ jQuery(function($) {
     // Handle
     (function() {
 
-        var processing = App.namespace('Processing');
+        var scan = App.namespace('Scan');
 
         /**
          * 画像読み込みハンドル
@@ -50,8 +50,8 @@ jQuery(function($) {
             var canvas = $('#canvas1').get(0);
             var ctx = canvas.getContext('2d');
             var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            processing.init(imageData);
-            imageData.data.set(processing.run(name));
+            scan.init(imageData);
+            imageData.data.set(scan.run(name));
             ctx.putImageData(imageData, 0, 0);
             return false;
         });

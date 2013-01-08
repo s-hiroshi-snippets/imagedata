@@ -4,15 +4,14 @@
  * @module filtering
  */
 
-
 /**
- * 各ピクセルごとにフィルター処理を呼び出す
+ * 　画像の全ピクセルを走査しピクセルごとにフィルター処理(Filter.run)を呼び出す
  *
- * @class Processing
+ * @class Scan
  */
 jQuery(function($) {
 
-    var processing = App.namespace('Processing');
+    var scan = App.namespace('Scan');
 
     // Processing 実装
     (function() {
@@ -27,7 +26,7 @@ jQuery(function($) {
          * @param {String} name filter name(mono | grayscale | smooth)
          */
         function run(name) {
-            // 全てのピクセルを走査
+            // 全ピクセルを走査しピクセルごとにフィルター処理を呼び出す
             var i, j, k, rgba = {}, data = [];
             // 行
             for (i = 0; i < imageData.height; i++) {
@@ -57,8 +56,8 @@ jQuery(function($) {
         }
 
         // 公開メソッド
-        processing.run = run;
-        processing.init = init;
+        scan.run = run;
+        scan.init = init;
 
     }());
 
