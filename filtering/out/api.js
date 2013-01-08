@@ -5,7 +5,9 @@ YUI.add("yuidoc-meta", function(Y) {
         "Boundary",
         "Filter",
         "Handle",
-        "Processing"
+        "PointFilter",
+        "Scan",
+        "SpatialFilter"
     ],
     "modules": [
         "filtering"

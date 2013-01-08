@@ -39,11 +39,29 @@
             "fors": {},
             "namespaces": {}
         },
-        "processing.js": {
-            "name": "processing.js",
+        "pointfilter.js": {
+            "name": "pointfilter.js",
             "modules": {},
             "classes": {
-                "Processing": 1
+                "PointFilter": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "scan.js": {
+            "name": "scan.js",
+            "modules": {},
+            "classes": {
+                "Scan": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "spatialfilter.js": {
+            "name": "spatialfilter.js",
+            "modules": {},
+            "classes": {
+                "SpatialFilter": 1
             },
             "fors": {},
             "namespaces": {}
@@ -58,13 +76,15 @@
                 "Boundary": 1,
                 "Filter": 1,
                 "Handle": 1,
-                "Processing": 1
+                "PointFilter": 1,
+                "Scan": 1,
+                "SpatialFilter": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "processing.js",
-            "line": 8,
+            "file": "spatialfilter.js",
+            "line": 7,
             "description": "モジュールfilteringはCanvasのフィルター処理を提供する"
         }
     },
@@ -125,9 +145,9 @@
             "line": 7,
             "description": "イベントハンドラ集"
         },
-        "Processing": {
-            "name": "Processing",
-            "shortname": "Processing",
+        "PointFilter": {
+            "name": "PointFilter",
+            "shortname": "PointFilter",
             "classitems": [],
             "plugins": [],
             "extensions": [],
@@ -135,9 +155,37 @@
             "extension_for": [],
             "module": "filtering",
             "namespace": "",
-            "file": "processing.js",
-            "line": 8,
-            "description": "各ピクセルごとにフィルター処理を呼び出す"
+            "file": "pointfilter.js",
+            "line": 7,
+            "description": "点フィルター処理を提供する\n点フィルターは空間フィルターに対して便宜上点(point)と呼ぶ。"
+        },
+        "Scan": {
+            "name": "Scan",
+            "shortname": "Scan",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "filtering",
+            "namespace": "",
+            "file": "scan.js",
+            "line": 7,
+            "description": "画像の全ピクセルを走査しピクセルごとにフィルター処理(Filter.run)を呼び出す"
+        },
+        "SpatialFilter": {
+            "name": "SpatialFilter",
+            "shortname": "SpatialFilter",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "filtering",
+            "namespace": "",
+            "file": "spatialfilter.js",
+            "line": 7,
+            "description": "空間フィルター処理を提供する"
         }
     },
     "classitems": [
@@ -204,106 +252,10 @@
         },
         {
             "file": "filter.js",
-            "line": 20,
-            "description": "空間フィルターのオペレーター",
-            "itemtype": "property",
-            "name": "operator",
-            "access": "private",
-            "tagname": "",
-            "type": "{Object}",
-            "class": "Filter",
-            "module": "filtering"
-        },
-        {
-            "file": "filter.js",
-            "line": 36,
-            "description": "2値画像フィルター\n\n注目ピクセルの近傍を使わないフィルター。",
+            "line": 22,
+            "description": "フィルター処理",
             "itemtype": "method",
-            "name": "mono",
-            "access": "private",
-            "tagname": "",
-            "params": [
-                {
-                    "name": "k",
-                    "description": "注目ピクセルのRed値に対応するImageData.dataのインデックス<br>\n    green k + 1<br>\n    blue  k + 2<br>\n    alpha k + 3",
-                    "type": "Number"
-                },
-                {
-                    "name": "imageData",
-                    "description": "",
-                    "type": "ImageObject"
-                }
-            ],
-            "return": {
-                "description": "rgbaの値を格納したオブジェクト",
-                "type": "Object"
-            },
-            "class": "Filter",
-            "module": "filtering"
-        },
-        {
-            "file": "filter.js",
-            "line": 60,
-            "description": "グレースケール\n\n注目ピクセルの近傍を使わないフィルター。",
-            "itemtype": "method",
-            "name": "grayscale",
-            "access": "private",
-            "tagname": "",
-            "params": [
-                {
-                    "name": "k",
-                    "description": "注目ピクセルのRed値に対応するImageData.dataのインデックス<br>\n    green k + 1<br>\n    blue  k + 2<br>\n    alpha k + 3",
-                    "type": "Number"
-                },
-                {
-                    "name": "imageData",
-                    "description": "",
-                    "type": "ImageData"
-                }
-            ],
-            "return": {
-                "description": "rgbaの値を格納したオブジェクト",
-                "type": "Object"
-            },
-            "class": "Filter",
-            "module": "filtering"
-        },
-        {
-            "file": "filter.js",
-            "line": 82,
-            "description": "空間フィルター",
-            "itemtype": "method",
-            "name": "spatial",
-            "params": [
-                {
-                    "name": "k",
-                    "description": "注目ピクセルのRed値に対応するImageData.dataのインデックス<br>\n    green k + 1<br>\n    blue  k + 2<br>\n    alpha k + 3",
-                    "type": "Number"
-                },
-                {
-                    "name": "imageData",
-                    "description": ""
-                },
-                {
-                    "name": "name",
-                    "description": "filter name"
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "Object"
-            },
-            "class": "Filter",
-            "module": "filtering"
-        },
-        {
-            "file": "filter.js",
-            "line": 112,
-            "description": "フィルター呼び出し処理",
-            "itemtype": "method",
-            "name": "process",
-            "access": "private",
-            "tagname": "",
+            "name": "run",
             "params": [
                 {
                     "name": "name",
@@ -317,42 +269,12 @@
                 },
                 {
                     "name": "imageData",
-                    "description": "",
-                    "type": "ImageData"
-                }
-            ],
-            "return": {
-                "description": "rgbaの値を格納したオブジェクト",
-                "type": "Object"
-            },
-            "class": "Filter",
-            "module": "filtering"
-        },
-        {
-            "file": "filter.js",
-            "line": 150,
-            "description": "フィルター処理",
-            "itemtype": "method",
-            "name": "run",
-            "params": [
-                {
-                    "name": "name",
-                    "description": "filter name (mono | grayscale | smooth | mean 加重平均 | sharpen)",
-                    "type": "String"
-                },
-                {
-                    "name": "k",
-                    "description": "ImageData.dataの処理rgbaのred値に対応するインデックス<br>",
-                    "type": "Number"
-                },
-                {
-                    "name": "imageData",
                     "description": ""
                 }
             ],
             "return": {
-                "description": "rgbaの値を格納したオブジェクト",
-                "type": "Object"
+                "description": "rgbaの値を格納したオブジェクト。フィルターがないときはfalseを返す。",
+                "type": "Object | Boolean"
             },
             "class": "Filter",
             "module": "filtering"
@@ -380,8 +302,263 @@
             "module": "filtering"
         },
         {
-            "file": "processing.js",
-            "line": 23,
+            "file": "pointfilter.js",
+            "line": 21,
+            "description": "フィルター定義",
+            "itemtype": "property",
+            "name": "filters",
+            "access": "private",
+            "tagname": "",
+            "type": "Object",
+            "class": "PointFilter",
+            "module": "filtering"
+        },
+        {
+            "file": "pointfilter.js",
+            "line": 30,
+            "description": "反転",
+            "itemtype": "method",
+            "name": "filters.reverse",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "k",
+                    "description": "注目ピクセルのRed値に対応するImageData.dataのインデックス<br>\n    green k + 1<br>\n    blue  k + 2<br>\n    alpha k + 3",
+                    "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": "",
+                    "type": "ImageObject"
+                }
+            ],
+            "return": {
+                "description": "rgbaの値を格納したオブジェクト",
+                "type": "Object"
+            },
+            "class": "PointFilter",
+            "module": "filtering"
+        },
+        {
+            "file": "pointfilter.js",
+            "line": 50,
+            "description": "2値画像フィルター\n\n注目ピクセルの近傍を使わないフィルター。",
+            "itemtype": "method",
+            "name": "filters.mono",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "k",
+                    "description": "注目ピクセルのRed値に対応するImageData.dataのインデックス<br>\n    green k + 1<br>\n    blue  k + 2<br>\n    alpha k + 3",
+                    "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": "",
+                    "type": "ImageObject"
+                }
+            ],
+            "return": {
+                "description": "rgbaの値を格納したオブジェクト",
+                "type": "Object"
+            },
+            "class": "PointFilter",
+            "module": "filtering"
+        },
+        {
+            "file": "pointfilter.js",
+            "line": 74,
+            "description": "グレースケール\n\n注目ピクセルの近傍を使わないフィルター。",
+            "itemtype": "method",
+            "name": "filters.grayscale",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "k",
+                    "description": "注目ピクセルのRed値に対応するImageData.dataのインデックス<br>\n    green k + 1<br>\n    blue  k + 2<br>\n    alpha k + 3",
+                    "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": "",
+                    "type": "ImageData"
+                }
+            ],
+            "return": {
+                "description": "rgbaの値を格納したオブジェクト",
+                "type": "Object"
+            },
+            "class": "PointFilter",
+            "module": "filtering"
+        },
+        {
+            "file": "pointfilter.js",
+            "line": 96,
+            "description": "赤を増やす",
+            "itemtype": "method",
+            "name": "filters.red",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "k",
+                    "description": "注目ピクセルのRed値に対応するImageData.dataのインデックス<br>\n    green k + 1<br>\n    blue  k + 2<br>\n    alpha k + 3",
+                    "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": "",
+                    "type": "ImageObject"
+                }
+            ],
+            "return": {
+                "description": "rgbaの値を格納したオブジェクト",
+                "type": "Object"
+            },
+            "class": "PointFilter",
+            "module": "filtering"
+        },
+        {
+            "file": "pointfilter.js",
+            "line": 118,
+            "description": "グリーンを増やす",
+            "itemtype": "method",
+            "name": "filters.green",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "k",
+                    "description": "注目ピクセルのRed値に対応するImageData.dataのインデックス<br>\n    green k + 1<br>\n    blue  k + 2<br>\n    alpha k + 3",
+                    "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": "",
+                    "type": "ImageObject"
+                }
+            ],
+            "return": {
+                "description": "rgbaの値を格納したオブジェクト",
+                "type": "Object"
+            },
+            "class": "PointFilter",
+            "module": "filtering"
+        },
+        {
+            "file": "pointfilter.js",
+            "line": 140,
+            "description": "青を増やす",
+            "itemtype": "method",
+            "name": "filters.blue",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "k",
+                    "description": "注目ピクセルのRed値に対応するImageData.dataのインデックス<br>\n    green k + 1<br>\n    blue  k + 2<br>\n    alpha k + 3",
+                    "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": "",
+                    "type": "ImageObject"
+                }
+            ],
+            "return": {
+                "description": "rgbaの値を格納したオブジェクト",
+                "type": "Object"
+            },
+            "class": "PointFilter",
+            "module": "filtering"
+        },
+        {
+            "file": "pointfilter.js",
+            "line": 162,
+            "description": "フィルターの存在を確認",
+            "itemtype": "method",
+            "name": "is",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "filter name",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "フィルターがあればtrue、フィルターがないときはfalse",
+                "type": "Boolean"
+            },
+            "class": "PointFilter",
+            "module": "filtering"
+        },
+        {
+            "file": "pointfilter.js",
+            "line": 175,
+            "description": "フィルター呼び出し処理",
+            "itemtype": "method",
+            "name": "perform",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "filter name",
+                    "type": "String"
+                },
+                {
+                    "name": "k",
+                    "description": "ImageData.dataの処理rgbaのred値に対応するインデックス<br>",
+                    "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": "",
+                    "type": "ImageData"
+                }
+            ],
+            "return": {
+                "description": "rgbaの値を格納したオブジェクト",
+                "type": "Object"
+            },
+            "class": "PointFilter",
+            "module": "filtering"
+        },
+        {
+            "file": "pointfilter.js",
+            "line": 188,
+            "description": "フィルター処理",
+            "itemtype": "method",
+            "name": "run",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "filter name (mono | grayscale | smooth | mean 加重平均 | sharpen)",
+                    "type": "String"
+                },
+                {
+                    "name": "k",
+                    "description": "ImageData.dataの処理rgbaのred値に対応するインデックス<br>",
+                    "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "rgbaの値を格納したオブジェクト",
+                "type": "Object"
+            },
+            "class": "PointFilter",
+            "module": "filtering"
+        },
+        {
+            "file": "scan.js",
+            "line": 22,
             "description": "フィルター処理結果のRGBAデータ配列を返すを返す",
             "itemtype": "method",
             "name": "run",
@@ -392,12 +569,12 @@
                     "type": "String"
                 }
             ],
-            "class": "Processing",
+            "class": "Scan",
             "module": "filtering"
         },
         {
-            "file": "processing.js",
-            "line": 47,
+            "file": "scan.js",
+            "line": 46,
             "description": "初期化\n\n処理対象のImageDataを設定する",
             "itemtype": "method",
             "name": "init",
@@ -408,7 +585,96 @@
                     "type": "ImageData"
                 }
             ],
-            "class": "Processing",
+            "class": "Scan",
+            "module": "filtering"
+        },
+        {
+            "file": "spatialfilter.js",
+            "line": 21,
+            "description": "空間フィルターのオペレーター",
+            "itemtype": "property",
+            "name": "operator",
+            "access": "private",
+            "tagname": "",
+            "type": "{Object}",
+            "class": "SpatialFilter",
+            "module": "filtering"
+        },
+        {
+            "file": "spatialfilter.js",
+            "line": 40,
+            "description": "空間フィルター",
+            "itemtype": "method",
+            "name": "spatial",
+            "params": [
+                {
+                    "name": "k",
+                    "description": "注目ピクセルのRed値に対応するImageData.dataのインデックス<br>\n    green k + 1<br>\n    blue  k + 2<br>\n    alpha k + 3",
+                    "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": ""
+                },
+                {
+                    "name": "name",
+                    "description": "filter name"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "SpatialFilter",
+            "module": "filtering"
+        },
+        {
+            "file": "spatialfilter.js",
+            "line": 73,
+            "description": "フィルターの存在を確認",
+            "itemtype": "method",
+            "name": "is",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "filter name",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "フィルターがあればtrue、フィルターがないときはfalse",
+                "type": "Boolean"
+            },
+            "class": "SpatialFilter",
+            "module": "filtering"
+        },
+        {
+            "file": "spatialfilter.js",
+            "line": 86,
+            "description": "フィルター処理の呼び出し",
+            "itemtype": "method",
+            "name": "run",
+            "params": [
+                {
+                    "name": "name",
+                    "description": "filter name (mono | grayscale | smooth | mean 加重平均 | sharpen)",
+                    "type": "String"
+                },
+                {
+                    "name": "k",
+                    "description": "ImageData.dataの処理rgbaのred値に対応するインデックス<br>",
+                    "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "rgbaの値を格納したオブジェクト",
+                "type": "Object"
+            },
+            "class": "SpatialFilter",
             "module": "filtering"
         }
     ],

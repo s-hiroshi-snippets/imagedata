@@ -49,7 +49,11 @@
             
                 <li><a href="..&#x2F;classes/Handle.html">Handle</a></li>
             
-                <li><a href="..&#x2F;classes/Processing.html">Processing</a></li>
+                <li><a href="..&#x2F;classes/PointFilter.html">PointFilter</a></li>
+            
+                <li><a href="..&#x2F;classes/Scan.html">Scan</a></li>
+            
+                <li><a href="..&#x2F;classes/SpatialFilter.html">SpatialFilter</a></li>
             
             </ul>
 
@@ -114,148 +118,26 @@ jQuery(function($) {
     &#x2F;&#x2F; Filter実装
     (function() {
 
-        var boundary = App.namespace(&#x27;Boundary&#x27;);
-        &#x2F;**
-         * 空間フィルターのオペレーター
-         *
-         * @property operator
-         * @private
-         * @type {Object}
-         *&#x2F;
-        var operator = {
-            smooth: [1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9, 1&#x2F;9],
-            mean: [1&#x2F;16, 2&#x2F;16, 1&#x2F;16, 2&#x2F;16, 4&#x2F;16, 2&#x2F;16, 1&#x2F;16, 2&#x2F;16, 1&#x2F;16],
-            sharpen: [0, -1, 0, -1, 5, -1, 0, -1, 0],
-            differentialH: [0, 0, 0, 0, -1, 1, 0, 0, 0], &#x2F;&#x2F; 横方向一次微分フィルター
-            differentialV: [0, 1, 0, 0, -1, 0, 0, 0, 0], &#x2F;&#x2F; 横方向一次微分フィルター
-            prewitt: [-1, 0, 1, -1, 0, 1, -1, 0, 1]         &#x2F;&#x2F; Prewittフィルター
-        };
-
-        &#x2F;**
-         * 2値画像フィルター
-         *
-         * 注目ピクセルの近傍を使わないフィルター。
-         *
-         * @method mono
-         * @private
-         * @param {Number} k 注目ピクセルのRed値に対応するImageData.dataのインデックス&lt;br&gt;
-         *     green k + 1&lt;br&gt;
-         *     blue  k + 2&lt;br&gt;
-         *     alpha k + 3
-         * @param {ImageObject} imageData
-         * @return {Object} rgbaの値を格納したオブジェクト
-         *&#x2F;
-        function mono(k, imageData) {
-            var rgba = {};
-            var color = parseInt((imageData.data[k] + imageData.data[k + 1] + imageData.data[k + 2]) &#x2F; 3, 10);
-            color = (color &lt; 128) ? 0 : 255;
-            rgba.r = rgba.g = rgba.b = color;
-            rgba.a = imageData.data[k + 3];
-            return rgba;
-
-        }
-
-        &#x2F;**
-         * グレースケール
-         *
-         * 注目ピクセルの近傍を使わないフィルター。
-         *
-         * @method grayscale
-         * @private
-         * @param {Number} k 注目ピクセルのRed値に対応するImageData.dataのインデックス&lt;br&gt;
-         *     green k + 1&lt;br&gt;
-         *     blue  k + 2&lt;br&gt;
-         *     alpha k + 3
-         * @param {ImageData} imageData
-         * @return {Object} rgbaの値を格納したオブジェクト
-         *&#x2F;
-        function grayscale(k, imageData) {
-            var rgba = {};
-            var color = parseInt((imageData.data[k] + imageData.data[k + 1] + imageData.data[k + 2]) &#x2F; 3, 10);
-            rgba.r = rgba.g = rgba.b = color;
-            rgba.a = imageData.data[k + 3];
-            return rgba;
-        }
-
-        &#x2F;**
-         * 空間フィルター
-         *
-         * @method spatial
-         * @param {Number} k 注目ピクセルのRed値に対応するImageData.dataのインデックス&lt;br&gt;
-         *     green k + 1&lt;br&gt;
-         *     blue  k + 2&lt;br&gt;
-         *     alpha k + 3
-         * @param imageData
-         * @param name filter name
-         * @return {Object}
-         *&#x2F;
-        function spatial(k, imageData, name) {
-            var rgba = {};
-            rgba.r = rgba.g = rgba.b = 0;
-            var i, j, n, count = 0, index = {};
-            for (i = -1; i &lt;= 1; i++) {
-                for (j = -1; j &lt;= 1; j++) {
-                    index = boundary.expandedIndex(k, i, j, imageData);
-                    n = k + (index.i * 3 + index.j) * 4;
-                    rgba.r += parseInt(operator[name][count] * imageData.data[n], 10);
-                    rgba.g += parseInt(operator[name][count] * imageData.data[n + 1], 10);
-                    rgba.b += parseInt(operator[name][count] * imageData.data[n + 2], 10);
-                    count++;
-                }
-            }
-            rgba.a = imageData.data[k + 3]; &#x2F;&#x2F; alpha
-            return rgba;
-        }
-
-        &#x2F;**
-         * フィルター呼び出し処理
-         * @method process
-         * @private
-         * @param {String} name filter name
-         * @param {Number} k ImageData.dataの処理rgbaのred値に対応するインデックス&lt;br&gt;
-         * @param {ImageData} imageData
-         * @return {Object} rgbaの値を格納したオブジェクト
-         *&#x2F;
-        function callFilter(k, imageData, name) {
-            if (&#x27;mono&#x27; === name) {
-                return mono(k, imageData);
-            }
-            if (&#x27;grayscale&#x27; === name) {
-                return grayscale(k, imageData);
-            }
-            if (&#x27;smooth&#x27; === name) {
-                return spatial(k, imageData, name);
-            }
-            if (&#x27;mean&#x27; === name) {
-                &#x2F;&#x2F; 加重平均
-                return spatial(k, imageData, name);
-
-            }
-            if (&#x27;sharpen&#x27; === name) {
-                return spatial(k, imageData, name);
-            }
-            if (&#x27;differentialH&#x27; === name) {
-                return spatial(k, imageData, name);
-            }
-            if (&#x27;differentialV&#x27; === name) {
-                return spatial(k, imageData, name);
-            }
-            if (&#x27;prewitt&#x27; === name) {
-                return spatial(k, imageData, name);
-            }
-        }
+        var pointFilter = App.namespace(&#x27;PointFilter&#x27;);
+        var spatialFilter = App.namespace(&#x27;SpatialFilter&#x27;);
 
         &#x2F;**
          * フィルター処理
          *
          * @method run
-         * @param {String} name filter name (mono | grayscale | smooth | mean 加重平均 | sharpen)
+         * @param {String} name filter name
          * @param {Number} k ImageData.dataの処理rgbaのred値に対応するインデックス&lt;br&gt;
          * @param imageData
-         * @return {Object} rgbaの値を格納したオブジェクト
+         * @return {Object | Boolean} rgbaの値を格納したオブジェクト。フィルターがないときはfalseを返す。
          *&#x2F;
         function run(k, imageData, name) {
-            return callFilter(k , imageData, name);
+            if (pointFilter.is(name) === true) {
+                return pointFilter.run(k, imageData, name);
+            }
+            if (spatialFilter.is(name) === true) {
+                return spatialFilter.run(k , imageData, name);
+            }
+            return false;
         }
 
         filter.run = run;

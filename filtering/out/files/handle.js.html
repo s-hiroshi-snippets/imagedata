@@ -49,7 +49,11 @@
             
                 <li><a href="..&#x2F;classes/Handle.html">Handle</a></li>
             
-                <li><a href="..&#x2F;classes/Processing.html">Processing</a></li>
+                <li><a href="..&#x2F;classes/PointFilter.html">PointFilter</a></li>
+            
+                <li><a href="..&#x2F;classes/Scan.html">Scan</a></li>
+            
+                <li><a href="..&#x2F;classes/SpatialFilter.html">SpatialFilter</a></li>
             
             </ul>
 
@@ -113,7 +117,7 @@ jQuery(function($) {
     &#x2F;&#x2F; Handle
     (function() {
 
-        var processing = App.namespace(&#x27;Processing&#x27;);
+        var scan = App.namespace(&#x27;Scan&#x27;);
 
         &#x2F;**
          * 画像読み込みハンドル
@@ -148,8 +152,8 @@ jQuery(function($) {
             var canvas = $(&#x27;#canvas1&#x27;).get(0);
             var ctx = canvas.getContext(&#x27;2d&#x27;);
             var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            processing.init(imageData);
-            imageData.data.set(processing.run(name));
+            scan.init(imageData);
+            imageData.data.set(scan.run(name));
             ctx.putImageData(imageData, 0, 0);
             return false;
         });
