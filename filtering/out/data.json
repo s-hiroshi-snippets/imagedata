@@ -370,7 +370,7 @@
         {
             "file": "pointfilter.js",
             "line": 74,
-            "description": "グレースケール(NTSC系加重平均法)\n\n注目ピクセルの近傍を使わないフィルター。",
+            "description": "グレースケール(NTSC系加重平均法)",
             "itemtype": "method",
             "name": "filters.grayscale",
             "access": "private",
@@ -399,10 +399,10 @@
         },
         {
             "file": "pointfilter.js",
-            "line": 97,
-            "description": "グレースケール\n\n注目ピクセルの近傍を使わないフィルター。",
+            "line": 95,
+            "description": "グレースケール(単純平均)",
             "itemtype": "method",
-            "name": "filters.grayscale",
+            "name": "filters.simpleGrayscale.",
             "access": "private",
             "tagname": "",
             "params": [
@@ -426,7 +426,37 @@
         },
         {
             "file": "pointfilter.js",
-            "line": 119,
+            "line": 115,
+            "description": "sepia セピア調",
+            "itemtype": "method",
+            "name": "filters.sepia.",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "k",
+                    "description": "注目ピクセルのRed値に対応するImageData.dataのインデックス<br>\n    green k + 1<br>\n    blue  k + 2<br>\n    alpha k + 3",
+                    "type": "Number"
+                },
+                {
+                    "name": "imageData",
+                    "description": "",
+                    "type": "ImageData"
+                }
+            ],
+            "return": {
+                "description": "rgbaの値を格納したオブジェクト",
+                "type": "Object"
+            },
+            "see": [
+                "http://www40.atwiki.jp/spellbound/pages/172.html"
+            ],
+            "class": "PointFilter",
+            "module": "filtering"
+        },
+        {
+            "file": "pointfilter.js",
+            "line": 141,
             "description": "赤を増やす",
             "itemtype": "method",
             "name": "filters.red",
@@ -453,7 +483,7 @@
         },
         {
             "file": "pointfilter.js",
-            "line": 141,
+            "line": 163,
             "description": "グリーンを増やす",
             "itemtype": "method",
             "name": "filters.green",
@@ -480,7 +510,7 @@
         },
         {
             "file": "pointfilter.js",
-            "line": 163,
+            "line": 185,
             "description": "青を増やす",
             "itemtype": "method",
             "name": "filters.blue",
@@ -507,7 +537,7 @@
         },
         {
             "file": "pointfilter.js",
-            "line": 185,
+            "line": 207,
             "description": "フィルターの存在を確認",
             "itemtype": "method",
             "name": "is",
@@ -527,7 +557,7 @@
         },
         {
             "file": "pointfilter.js",
-            "line": 198,
+            "line": 220,
             "description": "フィルター呼び出し処理",
             "itemtype": "method",
             "name": "perform",
@@ -559,7 +589,7 @@
         },
         {
             "file": "pointfilter.js",
-            "line": 211,
+            "line": 233,
             "description": "フィルター処理",
             "itemtype": "method",
             "name": "run",

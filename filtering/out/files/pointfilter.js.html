@@ -176,8 +176,6 @@ jQuery(function($) {
         &#x2F;**
          * グレースケール(NTSC系加重平均法)
          *
-         * 注目ピクセルの近傍を使わないフィルター。
-         *
          * @method filters.grayscale
          * @private
          * @param {Number} k 注目ピクセルのRed値に対応するImageData.dataのインデックス&lt;br&gt;
@@ -188,7 +186,7 @@ jQuery(function($) {
          * @return {Object} rgbaの値を格納したオブジェクト
          * @see http:&#x2F;&#x2F;www40.atwiki.jp&#x2F;spellbound&#x2F;pages&#x2F;172.html
          *&#x2F;
-         filters.simpleGrayscale =function(k, imageData) {
+         filters.grayscale = function(k, imageData) {
             var rgba = {};
             var average = parseInt(imageData.data[k] * 0.298912 + imageData.data[k + 1] * 0.586611+ imageData.data[k + 2] * 0.114478, 10);
             rgba.r = rgba.g = rgba.b = average;
@@ -197,11 +195,9 @@ jQuery(function($) {
         }
 
         &#x2F;**
-         * グレースケール
+         * グレースケール(単純平均)
          *
-         * 注目ピクセルの近傍を使わないフィルター。
-         *
-         * @method filters.grayscale
+         * @method filters.simpleGrayscale.
          * @private
          * @param {Number} k 注目ピクセルのRed値に対応するImageData.dataのインデックス&lt;br&gt;
          *     green k + 1&lt;br&gt;
@@ -210,11 +206,37 @@ jQuery(function($) {
          * @param {ImageData} imageData
          * @return {Object} rgbaの値を格納したオブジェクト
          *&#x2F;
-         filters.grayscale =function(k, imageData) {
+         filters.simpleGrayscale = function(k, imageData) {
             var rgba = {};
-            var color = parseInt((imageData.data[k] + imageData.data[k + 1] + imageData.data[k + 2]) &#x2F; 3, 10);
-            rgba.r = rgba.g = rgba.b = color;
+            var average = parseInt((imageData.data[k] + imageData.data[k + 1] + imageData.data[k + 2]) &#x2F; 3, 10);
+            rgba.r = rgba.g = rgba.b = average;
             rgba.a = imageData.data[k + 3];
+            return rgba;
+        }
+
+        &#x2F;**
+         * sepia セピア調
+         *
+         * @method filters.sepia.
+         * @private
+         * @param {Number} k 注目ピクセルのRed値に対応するImageData.dataのインデックス&lt;br&gt;
+         *     green k + 1&lt;br&gt;
+         *     blue  k + 2&lt;br&gt;
+         *     alpha k + 3
+         * @param {ImageData} imageData
+         * @return {Object} rgbaの値を格納したオブジェクト
+         * @see http:&#x2F;&#x2F;www40.atwiki.jp&#x2F;spellbound&#x2F;pages&#x2F;172.html
+         *&#x2F;
+        filters.sepia = function(k, imageData) {
+            var rgba = {};
+            &#x2F;&#x2F; グレースケールへ
+            var average = parseInt(imageData.data[k] * 0.298912 + imageData.data[k + 1] * 0.586611+ imageData.data[k + 2] * 0.114478, 10);
+            rgba.r = rgba.g = rgba.b = average;
+            rgba.a = imageData.data[k + 3];
+            &#x2F;&#x2F; セピアへ
+            rgba.r *= 0.9;
+            rgba.g *= 0.7;
+            rgba.b *= 0.4;
             return rgba;
         }
 
